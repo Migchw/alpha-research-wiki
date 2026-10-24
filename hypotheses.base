@@ -1,0 +1,22 @@
+filters:
+  and:
+    - 'type == "hypothesis"'
+views:
+  - type: table
+    name: Research Board
+    order:
+      - file.name
+      - id
+      - status
+      - universe
+      - expected_sign
+      - kill_criteria
+  - type: table
+    name: Graveyard
+    filters:
+      and:
+        - 'status == "rejected"'
+    order:
+      - file.name
+      - id
+      - rejected_reason

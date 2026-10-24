@@ -1,0 +1,16 @@
+filters:
+  and:
+    - 'type == "experiment"'
+views:
+  - type: table
+    name: Experiment Ledger
+    order:
+      - file.name
+      - hypothesis
+      - trial_no
+      - lookback
+      - sample
+      - sharpe
+      - t_stat
+      - max_dd
+      - reviewer_verdict
