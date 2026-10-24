@@ -1,6 +1,7 @@
 # ลิขสิทธิ์: ห้าม commit full-text / PDF ของ paper
 *.pdf
 raw/**/fulltext*
+raw/pdf/
 # ข้อมูลราคา: ดาวน์โหลดตอนรัน ห้าม commit
 data/
 .cache/
