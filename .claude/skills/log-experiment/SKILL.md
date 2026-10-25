@@ -33,6 +33,9 @@ python scripts/backtest_momentum.py --hypothesis <H-xxx> --lookback <lookback> -
 `- [[E-xxx]]: <lookback> (<sample>) · trial <trial_no> · verdict <verdict>`
 
 ## 5. ตัดสิน (ใช้ตัวเลขจาก frontmatter ของ experiment เท่านั้น)
+kill criteria ใช้กับ experiment ที่ config ตรงกับ `signal` ใน pre-registration เท่านั้น (H-001 = 12-7)
+lookback อื่นเป็น **baseline** ใช้เปรียบเทียบได้ แต่ห้ามใช้ส่ง hypothesis เข้า graveyard หรือ promote
+
 | สถานการณ์ | สิ่งที่ทำ |
 |---|---|
 | verdict `fail` | ไม่เปลี่ยน status ของ hypothesis · สรุปเหตุผลจาก Reviewer notes |
@@ -42,7 +45,7 @@ python scripts/backtest_momentum.py --hypothesis <H-xxx> --lookback <lookback> -
 | `out_of_sample` + `pass` + ผ่าน kill criteria + ไม่มีข้อห้าม promote | เสนอ promote: สร้าง `factors/F-xxx.md` จาก `templates/Factor.md` (`evidence` ลิงก์ทุก experiment ที่ใช้) และตั้ง `status: promoted` |
 
 ก่อนเปลี่ยน status เป็น `rejected` หรือ `promoted` ให้แสดงการตัดสินพร้อมตัวเลขที่ใช้ แล้ว **ถามผู้ใช้ยืนยันก่อนเสมอ**
-ตัวอย่าง `rejected_reason`: `"E-003: OOS t_stat 0.897 < 1.5 (kill criteria)"`
+ตัวอย่างรูปแบบ `rejected_reason`: `"E-xxx (12-7, OOS): t_stat <ค่า> < 1.5 (kill criteria)"`
 
 ## 6. ปิดงาน
 - รัน `python scripts/wiki_lint.py` ต้อง PASS

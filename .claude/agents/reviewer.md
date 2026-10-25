@@ -28,7 +28,9 @@ tools: Read, Grep, Glob, Edit, Bash
 5. **Data snooping**: config ตรงกับ pre-registration หรือไม่ (lookback, quantiles, costs, ช่วง sample)
    มีการแตะ out-of-sample ก่อน in-sample ผ่าน Reviewer หรือไม่ (`oos-before-review`) และ kill_criteria ถูกแก้หลังเห็นผลหรือไม่
    (ดู `git log -p -- hypotheses/` ถ้าทำได้)
-6. **Kill criteria** (เฉพาะ `sample: out_of_sample`): เทียบ t_stat และ sharpe ใน frontmatter กับ `kill_criteria` ตรงๆ
+6. **Kill criteria** (เฉพาะ `sample: out_of_sample` **และ** config ตรงกับ `signal` ที่ pre-register ไว้ เช่น H-001 = 12-7):
+   เทียบ t_stat และ sharpe ใน frontmatter กับ `kill_criteria` ตรงๆ · experiment ที่ lookback ไม่ตรง signal เป็น baseline
+   ให้ตอบ "ไม่เกี่ยว (baseline)" ห้ามใช้ตัดสิน hypothesis
 
 ## การตัดสิน verdict
 - `fail` ถ้ามีข้อใดข้อหนึ่ง: ตัวเลขไม่ตรงกับสคริปต์ · พบ look-ahead หรือ bias ที่**ไม่ได้ประกาศ**ไว้ทั้งใน `known_biases`
