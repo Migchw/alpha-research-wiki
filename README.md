@@ -25,6 +25,21 @@ paper → hypothesis (pre-register) → experiment (1 รัน = 1 trial) → R
 
 ตัวอย่างที่ใช้เดินเรื่อง: [H-001 Intermediate momentum ใน SET100](hypotheses/H-001-intermediate-momentum-set.md)
 
+## Backtest (EP4)
+
+```bash
+python scripts/test_backtest_momentum.py                                 # ตรวจ signal window ด้วยข้อมูลสังเคราะห์
+python scripts/backtest_momentum.py --hypothesis H-001 --lookback 12-1 --dry-run   # ดูผล ไม่นับเป็น trial
+python scripts/backtest_momentum.py --hypothesis H-001 --lookback 12-7   # รันจริง → experiments/E-xxx.md
+```
+
+- quintile long-short, rebalance รายเดือน, ค่าธรรมเนียม 30 bps ราคาจาก yfinance (cache ใน `data/` ไม่ commit)
+- ทุกการรันจริงเขียน experiment ใหม่ `trial_no` +1 และ `code_ref` มี git SHA
+- ปฏิเสธการรันถ้า hypothesis ยังไม่ `preregistered`/`testing` และล็อก `--sample out_of_sample`
+  จนกว่า in-sample จะผ่าน Reviewer
+- รายชื่อหุ้นอยู่ที่ `scripts/set100.txt` (รายชื่อปัจจุบัน → survivorship bias โดยตั้งใจ)
+- รันบน Colab: [`notebooks/backtest_momentum.ipynb`](notebooks/backtest_momentum.ipynb)
+
 ## ใช้กับ agent ตัวไหนก็ได้
 
 กติกาอยู่ใน [`AGENTS.md`](AGENTS.md) ใช้ได้กับ Claude Code, Gemini CLI, Codex และอื่นๆ
