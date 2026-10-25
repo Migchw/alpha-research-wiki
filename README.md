@@ -55,8 +55,11 @@ python scripts/test_validate_facts.py
 
 ## ใช้กับ agent ตัวไหนก็ได้
 
-กติกาอยู่ใน [`AGENTS.md`](AGENTS.md) ใช้ได้กับ Claude Code, Gemini CLI, Codex และอื่นๆ
-vault เป็น Markdown + YAML ธรรมดา ไม่ผูกกับเครื่องมือใด
+กติกาอยู่ใน [`AGENTS.md`](AGENTS.md) ใช้ได้กับ Claude Code, Antigravity CLI (`agy`) และ agent อื่นที่อ่าน AGENTS.md
+vault เป็น Markdown + YAML ธรรมดา ไม่ผูกกับเครื่องมือใด และ lint / backtest / dashboard ใช้ได้โดยไม่ต้องมี LLM
+
+- ไม่มี Claude แบบเสียเงิน: [docs/free-alternatives.md](docs/free-alternatives.md) (Gemini CLI แบบฟรีปิดไปแล้วตั้งแต่ 18 มิ.ย. 2026)
+- เริ่ม wiki ของ Hands-on project + การบ้าน EP8: [docs/your-project.md](docs/your-project.md)
 
 ## ข้อควรรู้
 

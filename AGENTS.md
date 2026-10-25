@@ -1,6 +1,6 @@
 # AGENTS.md — กติกาของ Alpha Research Wiki
 
-ไฟล์นี้ใช้ร่วมกันทุก agent (Claude Code, Gemini CLI, Codex ฯลฯ) อ่านให้จบก่อนแก้ไฟล์ใดๆ
+ไฟล์นี้ใช้ร่วมกันทุก agent (Claude Code, Antigravity CLI, Codex ฯลฯ) อ่านให้จบก่อนแก้ไฟล์ใดๆ
 
 ## ภารกิจ
 vault นี้คือ **หน่วยความจำของกระบวนการวิจัย alpha**: เก็บ paper, hypothesis, experiment และ factor ให้ย้อนตรวจได้ว่า
