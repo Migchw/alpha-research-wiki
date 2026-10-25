@@ -15,6 +15,7 @@ from pathlib import Path
 import yaml
 
 FOLDER_TYPE = {
+    "articles": "article",
     "papers": "paper",
     "concepts": "concept",
     "hypotheses": "hypothesis",
@@ -23,6 +24,7 @@ FOLDER_TYPE = {
 }
 
 REQUIRED = {
+    "article": ["title", "about", "basis", "status"],
     "paper": ["citekey", "title", "authors", "year", "status"],
     "concept": ["title"],
     "hypothesis": ["id", "status", "source_papers", "signal", "universe", "in_sample",
@@ -33,6 +35,7 @@ REQUIRED = {
 }
 
 ENUMS = {
+    ("article", "status"): {"draft", "reviewed"},
     ("paper", "status"): {"queued", "ingested", "reviewed"},
     ("hypothesis", "status"): {"idea", "preregistered", "testing", "promoted", "rejected"},
     ("hypothesis", "expected_sign"): {"positive", "negative", ""},

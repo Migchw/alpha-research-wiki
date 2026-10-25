@@ -22,6 +22,7 @@ vault นี้คือ **หน่วยความจำของกระ�
 | โฟลเดอร์ | เก็บอะไร |
 |---|---|
 | `raw/` | metadata ของแหล่งข้อมูล ลิงก์ และโน้ตดิบของเรา |
+| `articles/` | บทความอ่านเข้าใจสำหรับคนทั่วไป: อธิบาย paper ทั้งเรื่อง และรายงานงานวิจัยของเรา (`type: article`) |
 | `papers/` | source note 1 ไฟล์ต่อ 1 paper (`type: paper`) |
 | `concepts/` | แนวคิดที่ใช้ซ้ำได้ (`type: concept`) |
 | `hypotheses/` | สมมติฐาน alpha (`type: hypothesis`) |
@@ -30,12 +31,21 @@ vault นี้คือ **หน่วยความจำของกระ�
 | `templates/` | template ของทุก type |
 | `scripts/` | lint, backtest |
 
+## บทความ (`articles/`) กับ source note (`papers/`)
+- **บทความ** เล่าเป็นเรื่องให้คนทั่วไปเข้าใจ paper ทั้งชิ้น หรืออธิบายงานวิจัยของเราตั้งแต่คำถามถึงวิธีทำ
+  ส่วน **source note** คือตาราง claim สั้นพร้อมเลขหน้า ใช้ตรวจและอ้างอิงใน hypothesis
+- ทุกข้อเท็จจริงจาก paper ในบทความต้องตรวจกับต้นฉบับและใส่เลขหน้า ถ้าอ่านได้แค่ abstract ให้ตั้ง `basis: abstract`
+  และเขียนเฉพาะสิ่งที่ abstract รองรับ ห้ามเติมจากความจำของ LLM
+- เขียนด้วยคำของเราเอง ห้ามคัดลอกย่อหน้าหรือตารางจาก paper ปิดท้ายด้วยเครดิตและ DOI
+- **ห้ามพิมพ์ตัวเลขผล backtest ในบทความ** ใช้ code block ` ```ledger ` ตามด้วย id ของ hypothesis
+  แล้ว dashboard จะแสดงตารางผลล่าสุดจาก experiment ให้เอง
+
 ## Schema
 frontmatter เป็น key ระดับบนสุดเท่านั้น (flat) ห้ามซ้อน object เพราะ Obsidian Properties/Bases ใช้ไม่ได้
 ดู field ที่บังคับใน `templates/` และ `scripts/wiki_lint.py`
 
 ## Workflow
-`paper (queued → ingested → reviewed)` → `hypothesis (idea → preregistered → testing → promoted | rejected)`
+`paper (queued → ingested → reviewed)` + `article` (อธิบาย paper) → `hypothesis (idea → preregistered → testing → promoted | rejected)`
 → `experiment (reviewer_verdict: pending → pass | fail)` → `factor`
 
 ## ภาษา
