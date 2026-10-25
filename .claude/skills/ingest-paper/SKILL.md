@@ -17,10 +17,13 @@ Argument: `$ARGUMENTS` · มาตรฐานตัวอย่าง: `papers
    - `fulltext` = ฉบับตีพิมพ์ เลขหน้าเป็นของวารสาร
    - `working_paper` = ฉบับ working paper (เช่น NBER) เลขหน้าเป็นของ working paper และต้องเขียนเตือนว่าตัวเลขอาจต่างจากฉบับตีพิมพ์
    - `abstract` = มีแค่ abstract เขียนเฉพาะสิ่งที่ abstract รองรับ ไม่มีเลขหน้า
-3. แปลงเป็นข้อความไว้ในเครื่อง (ไม่ commit) แล้วตรวจว่าแต่ละหน้ามีเลขหน้ากำกับ:
+3. แปลงเป็นข้อความไว้ในเครื่อง (ไม่ commit) แล้วตรวจว่าแต่ละหน้ามีเลขหน้ากำกับ ใช้ PyMuPDF (`fitz`) เป็นหลัก
+   เพราะ pypdf อ่านฟอนต์บางแบบแล้วคำแตก (เช่น "cumula tive" ใน Daniel-Moskowitz WP):
    ```bash
-   python -c "import pypdf,sys;r=pypdf.PdfReader(sys.argv[1]);open(sys.argv[2],'w',encoding='utf-8').write('\n'.join(f'=== page {i+1} ===\n'+(p.extract_text() or '') for i,p in enumerate(r.pages)))" raw/pdf/<ไฟล์>.pdf raw/pdf/<citekey>.txt
+   python -c "import fitz,sys;d=fitz.open(sys.argv[1]);open(sys.argv[2],'w',encoding='utf-8').write('\n'.join(f'=== page {i+1} ===\n'+p.get_text() for i,p in enumerate(d)))" raw/pdf/<ไฟล์>.pdf raw/pdf/<citekey>.txt
    ```
+   ถ้าข้อความอ่านไม่ได้ (เช่น ไฟล์สแกนที่ OCR เสียแบบ CJL 1996 WP) ให้เรนเดอร์หน้าที่ต้องใช้เป็นภาพแล้วอ่านทีละหน้า
+   และบันทึกใน source note ว่าอ่านจากภาพ
    ตารางที่แปลงจาก PDF มักเพี้ยน ให้อ้างตัวเลขจากเนื้อความเป็นหลัก และตรวจตัวเลขในตารางกับประโยครอบข้างทุกครั้ง
 
 ## 1. อ่านให้จบก่อนเขียน
