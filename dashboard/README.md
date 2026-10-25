@@ -54,5 +54,8 @@ npm run dev        # เปิด http://localhost:3000 (สร้าง index �
 
 ## ข้อควรรู้
 
+- `npm install` (npm 11) อาจเตือน `allow-scripts` ว่า esbuild, sharp, unrs-resolver และ workerd มี install script ที่ยังไม่อนุญาต
+  ไม่ต้องทำอะไร (ทดสอบบน clone ใหม่ 2026-10-25: `npm run index` + `npm run build` ผ่าน และ `npm run start` เปิดได้ทุกหน้า)
+
 - `data/` และ `public/vault-assets/` สร้างจาก vault ตอนรัน ห้าม commit (อยู่ใน `.gitignore`)
 - dashboard ไม่ตัดสินอะไรเอง verdict และ status ต้องมาจาก Reviewer และ `/log-experiment` ใน vault

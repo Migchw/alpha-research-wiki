@@ -17,6 +17,37 @@ python scripts/wiki_lint.py
 เปิดโฟลเดอร์นี้เป็น vault ใน [Obsidian](https://obsidian.md/download) แล้วดู `hypotheses.base` (Research Board / Graveyard)
 และ `experiments.base` (Experiment Ledger)
 
+ต้องใช้ Python 3.10+ · Node.js 22.13+ (dashboard) · Git · agent: Claude Code (แพลน Pro ขึ้นไป) หรือ [ทางเลือกฟรี](docs/free-alternatives.md)
+
+## Skills และ Reviewer
+
+เปิด `claude` (หรือ `agy`) ที่ root ของ repo แล้วพิมพ์คำสั่ง · ขั้นตอนเต็มอยู่ใน `.claude/skills/<ชื่อ>/SKILL.md`
+
+| คำสั่ง | ทำอะไร |
+|---|---|
+| `/find-paper <ชื่อ หรือ DOI>` | ตรวจว่า paper มีจริงกับ Crossref/OpenAlex หาฉบับที่อ่านฟรีได้ แล้วบันทึกใน `reading-list.md` |
+| `/ingest-paper <citekey>` | อ่านต้นฉบับใน `raw/pdf/` แล้วเขียน source note (claim + เลขหน้า) และบทความอธิบาย |
+| `/log-experiment <H-xxx> <12-1\|12-7> [sample]` | รัน backtest เป็น trial ใหม่ → Reviewer → ตัดสินตาม kill criteria (ถามก่อนเปลี่ยน status) |
+| `/wiki-lint` | ตรวจ vault ด้วย `scripts/wiki_lint.py` |
+| Reviewer | Claude Code: subagent `.claude/agents/reviewer.md` · agent อื่น: `/reviewer experiments/E-xxx.md` |
+
+- Claude Code มี hook รัน lint ทุกครั้งที่เขียนไฟล์ (`.claude/settings.json`) agent อื่นให้รัน lint เองก่อน commit
+- `.agents/skills/` คือสำเนาสำหรับ Antigravity CLI และ agent อื่น สร้างด้วย `python scripts/sync_skills.py` ห้ามแก้ตรงๆ
+
+## Dashboard (EP8)
+
+```bash
+cd dashboard
+npm install
+npm run dev        # http://localhost:3000 · แก้โน้ตแล้วรัน npm run index ใหม่
+```
+
+Research Board · Experiment Ledger · Graph · บทความ อ่านอย่างเดียว ไม่แก้ไฟล์ใน vault รายละเอียดใน [`dashboard/README.md`](dashboard/README.md)
+
+## เริ่ม Hands-on project ของตัวเอง
+
+กด **Use this template** แล้วทำตาม [docs/your-project.md](docs/your-project.md) (มีการบ้าน EP8: ingest 1 paper + register 1 hypothesis)
+
 ## Research loop
 
 ```
@@ -38,7 +69,8 @@ python scripts/backtest_momentum.py --hypothesis H-001 --lookback 12-7   # ร�
 - ปฏิเสธการรันถ้า hypothesis ยังไม่ `preregistered`/`testing` และล็อก `--sample out_of_sample`
   จนกว่า in-sample จะผ่าน Reviewer
 - รายชื่อหุ้นอยู่ที่ `scripts/set100.txt` (รายชื่อปัจจุบัน → survivorship bias โดยตั้งใจ)
-- รันบน Colab: [`notebooks/backtest_momentum.ipynb`](notebooks/backtest_momentum.ipynb)
+- รันบน Colab: [เปิดใน Colab](https://colab.research.google.com/github/Migchw/alpha-research-wiki/blob/master/notebooks/backtest_momentum.ipynb)
+  ([`notebooks/backtest_momentum.ipynb`](notebooks/backtest_momentum.ipynb))
 
 ## เอกสาร → facts (EP7)
 
@@ -59,7 +91,6 @@ python scripts/test_validate_facts.py
 vault เป็น Markdown + YAML ธรรมดา ไม่ผูกกับเครื่องมือใด และ lint / backtest / dashboard ใช้ได้โดยไม่ต้องมี LLM
 
 - ไม่มี Claude แบบเสียเงิน: [docs/free-alternatives.md](docs/free-alternatives.md) (Gemini CLI แบบฟรีปิดไปแล้วตั้งแต่ 18 มิ.ย. 2026)
-- เริ่ม wiki ของ Hands-on project + การบ้าน EP8: [docs/your-project.md](docs/your-project.md)
 
 ## ข้อควรรู้
 
