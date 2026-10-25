@@ -28,6 +28,7 @@ vault นี้คือ **หน่วยความจำของกระ�
 | `hypotheses/` | สมมติฐาน alpha (`type: hypothesis`) |
 | `experiments/` | ผล backtest 1 ไฟล์ต่อ 1 รัน (`type: experiment`) |
 | `factors/` | factor ที่ผ่าน Reviewer gate แล้ว (`type: factor`) |
+| `facts/` | ตัวเลขจาก filing ที่ผ่าน `scripts/validate_facts.py` แล้ว (JSON) · `facts/runs/` เก็บ candidate จาก LLM ทุกรอบ |
 | `templates/` | template ของทุก type |
 | `scripts/` | lint, backtest |
 

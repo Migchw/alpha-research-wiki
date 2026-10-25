@@ -40,6 +40,19 @@ python scripts/backtest_momentum.py --hypothesis H-001 --lookback 12-7   # ร�
 - รายชื่อหุ้นอยู่ที่ `scripts/set100.txt` (รายชื่อปัจจุบัน → survivorship bias โดยตั้งใจ)
 - รันบน Colab: [`notebooks/backtest_momentum.ipynb`](notebooks/backtest_momentum.ipynb)
 
+## เอกสาร → facts (EP7)
+
+```bash
+python scripts/extract_pdf.py --name ap-2026-q2 --url https://ap.listedcompany.com/misc/MDNA/20260813-ap-mdna-2q2026-en.pdf --sha256 bac2ddd555a8a19351c4cabe0702c2f205fe355cf1bc1f11685be00d0b749f7a
+python scripts/validate_facts.py --facts facts/runs/ap-2026-q2-opus-1.json --source data/filings/ap-2026-q2      # PASS
+python scripts/validate_facts.py --facts facts/runs/ap-2026-q2-MUTATED-demo.json --source data/filings/ap-2026-q2 # FAIL 5 ข้อ
+python scripts/test_validate_facts.py
+```
+
+- MarkItDown แปลงทีละหน้า (`## Page N`) · PDF และข้อความเต็มอยู่ใน `data/` ไม่ commit
+- LLM สกัดตาม `scripts/extract_facts_prompt.md` (อ่านและชี้หน้า ไม่คำนวณ) · candidate ทุกรอบอยู่ใน `facts/runs/`
+- validator ตรวจ schema · ค่าต้องพิมพ์อยู่ในหน้าที่อ้าง · ยอดรวมลงตัวภายในการปัดเศษของเอกสาร · ผ่านแล้วจึงเขียน `facts/<name>.json`
+
 ## ใช้กับ agent ตัวไหนก็ได้
 
 กติกาอยู่ใน [`AGENTS.md`](AGENTS.md) ใช้ได้กับ Claude Code, Gemini CLI, Codex และอื่นๆ

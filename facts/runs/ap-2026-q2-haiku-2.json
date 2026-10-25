@@ -1,0 +1,282 @@
+{
+ "model": "claude-haiku-5-5",
+ "run_at": "2026-10-25",
+ "prompt": "scripts/extract_facts_prompt.md",
+ "metrics": [
+  {
+   "code": "total_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 10777,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Total revenue for Q2 2026, up 8.4% YoY",
+   "note": "Components on page 2 (10,506 + 270) sum to 10,776, a 1 million rounding difference in the source."
+  },
+  {
+   "code": "total_revenue",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 20324,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Total revenue for first half 2026, up 15.2% YoY",
+   "note": "Components on page 2 (19,792 + 531) sum to 20,323, a 1 million rounding difference in the source."
+  },
+  {
+   "code": "property_sales_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 10506,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "Property sales revenue in Q2 2026",
+   "note": null
+  },
+  {
+   "code": "property_sales_revenue",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 19792,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "Property sales revenue in first half 2026",
+   "note": null
+  },
+  {
+   "code": "service_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 270,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "Service revenue in Q2 2026, up 11.2% YoY",
+   "note": null
+  },
+  {
+   "code": "service_revenue",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 531,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "Service revenue in first half 2026",
+   "note": null
+  },
+  {
+   "code": "net_profit",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 1063,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Net profit for Q2 2026, up 5.7% YoY",
+   "note": null
+  },
+  {
+   "code": "net_profit",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 1967,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Net profit for first half 2026, up 5.2% YoY",
+   "note": null
+  },
+  {
+   "code": "revenue",
+   "period": "2Q2026",
+   "scope": "segment:low_rise",
+   "value": 9509,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Low-rise segment revenue, four-year high",
+   "note": null
+  },
+  {
+   "code": "revenue",
+   "period": "2Q2026",
+   "scope": "segment:condo",
+   "value": 879,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Condominium segment revenue, up 114.8% YoY",
+   "note": null
+  },
+  {
+   "code": "gross_margin",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 30.9,
+   "unit": "percent",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "Gross margin for Q2 2026, up 20bps YoY",
+   "note": null
+  },
+  {
+   "code": "sga_to_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 17.5,
+   "unit": "percent",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "SG&A expenses as share of revenue in Q2",
+   "note": "Page 3 repeats 17.5% of revenue, consistent."
+  },
+  {
+   "code": "net_debt_to_equity",
+   "period": "2026-06-30",
+   "scope": "consolidated",
+   "value": 0.66,
+   "unit": "times",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "Net debt-to-equity ratio described as healthy",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 12305,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 4,
+   "paraphrase": "Net presales in Q2 2026, up 50.2% YoY",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 23520,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 4,
+   "paraphrase": "Net presales for first half 2026, up 15.8% YoY",
+   "note": "Low-rise 19,033 plus condo 4,486 sums to 23,519, a 1 million rounding difference in the source."
+  },
+  {
+   "code": "presales",
+   "period": "7M2026",
+   "scope": "consolidated",
+   "value": 27974,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Cumulative presales through July 2026, up 13.8%",
+   "note": "Page 5 labels this period as \"7M 2027\", which is a typo; the context refers to 2026."
+  },
+  {
+   "code": "presales",
+   "period": "JUL2026",
+   "scope": "consolidated",
+   "value": 4455,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Presales booked in July 2026",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "JUL2026",
+   "scope": "segment:low_rise",
+   "value": 3714,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Low-rise presales booked in July 2026",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "JUL2026",
+   "scope": "segment:condo",
+   "value": 741,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Condominium presales booked in July 2026",
+   "note": null
+  },
+  {
+   "code": "presales_target",
+   "period": "FY2026",
+   "scope": "consolidated",
+   "value": 49000,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 4,
+   "paraphrase": "Full-year 2026 net presales target",
+   "note": "Page 5 repeats the same THB 49,000 million target."
+  },
+  {
+   "code": "presales_target_achieved",
+   "period": "7M2026",
+   "scope": "consolidated",
+   "value": 57.1,
+   "unit": "percent",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Share of full-year presales target achieved by July",
+   "note": null
+  },
+  {
+   "code": "backlog",
+   "period": "2026-07-31",
+   "scope": "consolidated",
+   "value": 23646,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Total AP backlog as of July 31, 2026",
+   "note": "Backlog includes QTD Q3 2026 transfer value not yet announced."
+  },
+  {
+   "code": "backlog",
+   "period": "2026-07-31",
+   "scope": "segment:low_rise",
+   "value": 20404,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "Low-rise backlog as of July 31, 2026",
+   "note": "Backlog includes QTD Q3 2026 transfer value not yet announced."
+  },
+  {
+   "code": "backlog",
+   "period": "2026-07-31",
+   "scope": "segment:condo",
+   "value": 3242,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "AP condominium backlog as of July 31, 2026",
+   "note": "Backlog includes QTD Q3 2026 transfer value not yet announced. Excludes JV condo backlog of 18,184 on page 6."
+  },
+  {
+   "code": "operating_cash_flow",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": null,
+   "unit": "THB_m",
+   "status": "not_disclosed",
+   "page": null,
+   "paraphrase": "Operating cash flow not stated in document",
+   "note": "Document shows 1H2026 capex of THB 7,732 million and debt figures, but no operating cash flow."
+  }
+ ]
+}

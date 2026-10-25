@@ -1,0 +1,282 @@
+{
+ "model": "claude-haiku-5-5",
+ "run_at": "2026-10-25",
+ "prompt": "scripts/extract_facts_prompt.md",
+ "metrics": [
+  {
+   "code": "total_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 10777,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "รายได้รวมไตรมาส 2 ปี 2026 เพิ่มขึ้น 8.4% YoY",
+   "note": null
+  },
+  {
+   "code": "total_revenue",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 20324,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "รายได้รวมครึ่งปีแรก 2026 เพิ่มขึ้น 15.2% YoY",
+   "note": "ผลรวม property sales 19,792 + services 531 = 20,323 ต่างจากยอดรวม 20,324 อยู่ 1 หน่วย น่าจะเป็นการปัดเศษ"
+  },
+  {
+   "code": "property_sales_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 10506,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "รายได้จากการขายอสังหาริมทรัพย์ไตรมาส 2 ปี 2026",
+   "note": "ผลรวมกับ services 270 = 10,776 ต่างจากยอดรวม 10,777 อยู่ 1 หน่วย น่าจะเป็นการปัดเศษ"
+  },
+  {
+   "code": "property_sales_revenue",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 19792,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "รายได้จากการขายอสังหาริมทรัพย์ครึ่งปีแรก 2026",
+   "note": null
+  },
+  {
+   "code": "service_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 270,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "รายได้จากบริการไตรมาส 2 ปี 2026 เพิ่มขึ้น 11.2% YoY",
+   "note": null
+  },
+  {
+   "code": "service_revenue",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 531,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 2,
+   "paraphrase": "รายได้จากบริการครึ่งปีแรก 2026",
+   "note": null
+  },
+  {
+   "code": "net_profit",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 1063,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "กำไรสุทธิไตรมาส 2 ปี 2026 เพิ่มขึ้น 5.7% YoY",
+   "note": null
+  },
+  {
+   "code": "net_profit",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 1967,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "กำไรสุทธิครึ่งปีแรก 2026 เพิ่มขึ้น 5.2% YoY",
+   "note": null
+  },
+  {
+   "code": "revenue",
+   "period": "2Q2026",
+   "scope": "segment:low_rise",
+   "value": 9509,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "รายได้ segment บ้านจัดสรรไตรมาส 2 ปี 2026",
+   "note": null
+  },
+  {
+   "code": "revenue",
+   "period": "2Q2026",
+   "scope": "segment:condo",
+   "value": 879,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "รายได้ segment คอนโดมิเนียมไตรมาส 2 ปี 2026",
+   "note": null
+  },
+  {
+   "code": "gross_margin",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 30.9,
+   "unit": "percent",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "อัตรากำไรขั้นต้นรวมไตรมาส 2 ปี 2026",
+   "note": null
+  },
+  {
+   "code": "sga_to_revenue",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 17.5,
+   "unit": "percent",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "ค่าใช้จ่ายขายและบริหารต่อรายได้ไตรมาส 2 ปี 2026",
+   "note": null
+  },
+  {
+   "code": "net_debt_to_equity",
+   "period": "2026-06-30",
+   "scope": "consolidated",
+   "value": 0.66,
+   "unit": "times",
+   "status": "reported",
+   "page": 1,
+   "paraphrase": "อัตราหนี้สุทธิต่อส่วนผู้ถือหุ้นอยู่ที่ 0.66 เท่า",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "2Q2026",
+   "scope": "consolidated",
+   "value": 12305,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 4,
+   "paraphrase": "ยอด presales สุทธิไตรมาส 2 ปี 2026",
+   "note": "ผลรวม low-rise 10,272 + condo 2,033 = 12,305 ตรงกัน"
+  },
+  {
+   "code": "presales",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": 23520,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 4,
+   "paraphrase": "ยอด presales สุทธิครึ่งปีแรก 2026",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "7M2026",
+   "scope": "consolidated",
+   "value": 27974,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด presales สะสม 7 เดือนแรก 2026",
+   "note": "เอกสารเขียนว่า '7M 2027' ในประโยคหนึ่ง แต่บริบททั้งหมดหมายถึง 7M 2026 (น่าจะพิมพ์ผิด)"
+  },
+  {
+   "code": "presales",
+   "period": "JUL2026",
+   "scope": "consolidated",
+   "value": 4455,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด presales เดือนกรกฎาคม 2026 รวมทุก segment",
+   "note": null
+  },
+  {
+   "code": "presales",
+   "period": "JUL2026",
+   "scope": "segment:low_rise",
+   "value": 3714,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด presales เดือนกรกฎาคม 2026 จากบ้านจัดสรร",
+   "note": "3,714 + 741 = 4,455 ตรงกับยอดรวม"
+  },
+  {
+   "code": "presales",
+   "period": "JUL2026",
+   "scope": "segment:condo",
+   "value": 741,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด presales เดือนกรกฎาคม 2026 จากคอนโดมิเนียม",
+   "note": null
+  },
+  {
+   "code": "presales_target",
+   "period": "FY2026",
+   "scope": "consolidated",
+   "value": 49000,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 4,
+   "paraphrase": "เป้าหมาย presales ทั้งปี 2026",
+   "note": null
+  },
+  {
+   "code": "presales_target_achieved",
+   "period": "7M2026",
+   "scope": "consolidated",
+   "value": 57.1,
+   "unit": "percent",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "presales 7 เดือนแรกคิดเป็นร้อยละของเป้าทั้งปี",
+   "note": null
+  },
+  {
+   "code": "backlog",
+   "period": "2026-07-31",
+   "scope": "consolidated",
+   "value": 23646,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด backlog ของ AP ณ 31 ก.ค. 2026",
+   "note": "เอกสารระบุว่า backlog รวมมูลค่าการโอนไตรมาส 3 ที่ยังไม่ประกาศ; ไม่รวม backlog คอนโดร่วมทุน 18,184"
+  },
+  {
+   "code": "backlog",
+   "period": "2026-07-31",
+   "scope": "segment:low_rise",
+   "value": 20404,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด backlog บ้านจัดสรร ณ 31 ก.ค. 2026",
+   "note": "20,404 + 3,242 = 23,646 ตรงกับยอดรวม"
+  },
+  {
+   "code": "backlog",
+   "period": "2026-07-31",
+   "scope": "segment:condo",
+   "value": 3242,
+   "unit": "THB_m",
+   "status": "reported",
+   "page": 5,
+   "paraphrase": "ยอด backlog คอนโดของ AP ณ 31 ก.ค. 2026",
+   "note": "ไม่รวม backlog คอนโดร่วมทุน 18,184 ที่ระบุในหน้า 6"
+  },
+  {
+   "code": "operating_cash_flow",
+   "period": "1H2026",
+   "scope": "consolidated",
+   "value": null,
+   "unit": "THB_m",
+   "status": "not_disclosed",
+   "page": null,
+   "paraphrase": "ไม่พบตัวเลขกระแสเงินสดจากการดำเนินงานครึ่งปีแรก",
+   "note": "เอกสารมีการใช้จ่ายลงทุน 7,732 และหนี้สิน แต่ไม่มีกระแสเงินสดจากการดำเนินงาน"
+  }
+ ]
+}
