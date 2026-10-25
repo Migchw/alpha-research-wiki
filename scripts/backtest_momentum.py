@@ -11,6 +11,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import subprocess
 import sys
@@ -34,6 +35,7 @@ ALLOWED_STATUS = {"preregistered", "testing"}
 QUANTILES = 5
 MIN_NAMES = 5 * QUANTILES
 DOWNLOAD_START = "2008-12-01"
+MIN_PRICED = 0.95  # share of the universe that must have prices before a run counts
 EXTREME_RET = 1.0  # flag single-stock monthly returns above +/-100% as data-quality suspects
 
 FIELD_ORDER = ["type", "id", "hypothesis", "trial_no", "code_ref", "lookback", "skip", "rebalance",
@@ -105,17 +107,38 @@ def load_universe(vault: Path) -> list[str]:
 
 
 def load_prices(vault: Path, symbols: list[str], end: str, refresh: bool) -> pd.DataFrame:
-    """Daily adjusted close from yfinance, cached under data/ (gitignored)."""
-    cache = vault / "data" / f"set100_close_{DOWNLOAD_START}_{end}.csv"
+    """Daily adjusted close from yfinance, cached under data/ (gitignored).
+
+    A partial download (rate limit, flaky network) would silently shrink the universe and
+    produce a trial that can never be deleted, so refuse to run or cache below MIN_PRICED.
+    """
+    tag = hashlib.sha1(" ".join(symbols).encode()).hexdigest()[:8]
+    cache = vault / "data" / f"set100_close_{DOWNLOAD_START}_{end}_{tag}.csv"
     if cache.exists() and not refresh:
         return pd.read_csv(cache, index_col=0, parse_dates=True)
     import yfinance as yf
 
     warnings.filterwarnings("ignore")
-    raw = yf.download([f"{s}.BK" for s in symbols], start=DOWNLOAD_START, end=end,
-                      auto_adjust=True, progress=False, threads=True)["Close"]
-    raw.columns = [c.removesuffix(".BK") for c in raw.columns]
-    raw = raw.dropna(how="all", axis=1)
+
+    def fetch(names: list[str]) -> pd.DataFrame:
+        close = yf.download([f"{s}.BK" for s in names], start=DOWNLOAD_START, end=end,
+                            auto_adjust=True, progress=False, threads=True)["Close"]
+        if isinstance(close, pd.Series):
+            close = close.to_frame(f"{names[0]}.BK")
+        close.columns = [c.removesuffix(".BK") for c in close.columns]
+        return close.dropna(how="all", axis=1)
+
+    raw = fetch(symbols)
+    for name in [s for s in symbols if s not in raw.columns]:  # retry one by one
+        one = fetch([name])
+        if not one.empty:
+            raw = raw.join(one, how="outer")
+    missing = sorted(set(symbols) - set(raw.columns))
+    if len(symbols) - len(missing) < MIN_PRICED * len(symbols):
+        raise GateError(f"ดาวน์โหลดราคาได้ {len(symbols) - len(missing)}/{len(symbols)} ตัว "
+                        f"(ขาด {', '.join(missing)}) ไม่บันทึก cache และไม่สร้าง experiment ลองใหม่อีกครั้ง")
+    if missing:
+        print(f"NOTE  ไม่มีราคาใน yfinance: {', '.join(missing)}")
     cache.parent.mkdir(exist_ok=True)
     raw.to_csv(cache)
     return raw
