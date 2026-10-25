@@ -20,14 +20,18 @@ python scripts/wiki_lint.py        # ต้องได้ PASS
 
 ```bash
 git rm hypotheses/*.md experiments/*.md papers/*.md concepts/*.md articles/*.md
-git rm reading-list.md raw/2026-10-24-citation-check.md
+git rm raw/2026-10-24-citation-check.md
 git rm -r facts
+cp templates/Reading-list.md reading-list.md     # แทนที่ด้วยตารางว่าง
 python scripts/wiki_lint.py        # PASS: 0 error(s)
 ```
 
-ต้องลบ `reading-list.md` ด้วย เพราะมันลิงก์ไปหา paper ตัวอย่าง ถ้าลบ paper แต่เก็บไฟล์นี้ lint จะ fail เพราะ wikilink เสีย
-(เราทดสอบบนสำเนาเมื่อ 2026-10-25: lint ผ่าน และ dashboard `npm run index` + `npm run build` ผ่านกับ vault ว่าง ทุกหน้าเปิดได้)
-`templates/`, `scripts/`, `.claude/` และ `dashboard/` เก็บไว้ทั้งหมด
+- ต้องแทน `reading-list.md` ด้วยตารางว่าง เพราะของเดิมลิงก์ไปหา paper ตัวอย่าง ถ้าลบ paper แต่เก็บไฟล์เดิม lint จะ fail
+  เพราะ wikilink เสีย และห้ามลบทิ้งเฉยๆ เพราะ `/find-paper` กับ `/ingest-paper` บันทึกสถานะ paper ลงไฟล์นี้
+- `/ingest-paper` ใช้ `papers/jegadeesh-titman-1993.md` เป็นตัวอย่างมาตรฐาน ซึ่งแบบ B ลบไปแล้ว ถ้าจะ ingest ครั้งแรก
+  ให้ทำแบบ A ก่อน หรือเปิดไฟล์ตัวอย่างจาก repo ต้นฉบับบน GitHub ประกอบ
+- `templates/`, `scripts/`, `.claude/` และ `dashboard/` เก็บไว้ทั้งหมด
+- เราทดสอบบนสำเนาเมื่อ 2026-10-25: lint ผ่าน และ dashboard `npm run index` + `npm run build` ผ่านกับ vault ว่าง ทุกหน้าเปิดได้
 
 ## 3. ดูความคืบหน้าบน dashboard
 

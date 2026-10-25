@@ -46,7 +46,8 @@ cd dashboard && npm install && npm run dev                            # http://l
 ## ระดับ 2: Antigravity CLI (`agy`)
 
 Antigravity CLI อ่าน `AGENTS.md` ที่ root ของ repo เองโดยไม่ต้องตั้งค่า เราทดสอบเมื่อ 2026-10-25 (agy 1.4.7):
-ถามกติกาทองข้อ 5 โดยห้ามใช้ tool แล้วตอบถูกพร้อมบอกว่ามาจาก `AGENTS.md`
+ถามว่า "ห้ามลบ hypothesis ที่ล้มเหลวใช่ไหม" โดยไม่เอ่ยชื่อไฟล์ ได้คำตอบตามกติกาข้อ 5 ในรอบเดียว
+และ log (`--output-format stream-json`) ไม่มีการเรียก tool อ่านไฟล์เลย
 
 ```bash
 cd alpha-research-wiki
