@@ -75,7 +75,7 @@ function numberOrNull(value) {
 // Verification state shown in badges and the graph: papers by what they were checked against,
 // experiments by the Reviewer verdict.
 function verificationOf(kind, meta) {
-  if (kind === 'paper') return meta.verified_against === 'fulltext' ? 'verified' : 'pending';
+  if (kind === 'paper') return ['fulltext', 'working_paper'].includes(meta.verified_against) ? 'verified' : 'pending';
   if (kind === 'experiment') return meta.reviewer_verdict || 'pending';
   return '';
 }

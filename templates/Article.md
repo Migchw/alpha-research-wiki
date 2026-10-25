@@ -2,7 +2,7 @@
 type: article
 title: ""
 about: []            # wikilink ไปยัง paper / hypothesis ที่บทความนี้อธิบาย
-basis: fulltext      # fulltext | abstract | vault (รายงานจากงานใน vault เอง)
+basis: fulltext      # fulltext | working_paper | abstract | vault (รายงานจากงานใน vault เอง)
 read_min:
 status: draft        # draft | reviewed
 tags: [article]

@@ -37,6 +37,8 @@ REQUIRED = {
 ENUMS = {
     ("article", "status"): {"draft", "reviewed"},
     ("paper", "status"): {"queued", "ingested", "reviewed"},
+    ("paper", "verified_against"): {"fulltext", "working_paper", "abstract", ""},
+    ("article", "basis"): {"fulltext", "working_paper", "abstract", "vault"},
     ("hypothesis", "status"): {"idea", "preregistered", "testing", "promoted", "rejected"},
     ("hypothesis", "expected_sign"): {"positive", "negative", ""},
     ("experiment", "sample"): {"in_sample", "out_of_sample"},

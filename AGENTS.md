@@ -40,6 +40,13 @@ vault นี้คือ **หน่วยความจำของกระ�
 - **ห้ามพิมพ์ตัวเลขผล backtest ในบทความ** ใช้ code block ` ```ledger ` ตามด้วย id ของ hypothesis
   แล้ว dashboard จะแสดงตารางผลล่าสุดจาก experiment ให้เอง
 
+## ขั้นตอนมาตรฐาน (ใช้ได้กับทุก agent)
+ไฟล์ใน `.claude/skills/*/SKILL.md` เป็น Markdown ธรรมดา agent ตัวไหนก็อ่านแล้วทำตามได้ (Claude Code เรียกเป็น `/ชื่อ`)
+- `find-paper` ตรวจว่า paper มีจริงและ metadata ถูก หาฉบับที่อ่านได้ฟรี และตรวจว่าไฟล์คือต้นฉบับ ไม่ใช่สรุปจาก AI
+- `ingest-paper` อ่านต้นฉบับแล้วเขียน source note (claim table + เลขหน้า) และบทความอธิบาย
+- `log-experiment` รัน backtest เป็น trial ใหม่ → Reviewer (`.claude/agents/reviewer.md`) → ตัดสินตาม kill criteria
+- `wiki-lint` ตรวจ vault ด้วยสคริปต์
+
 ## Schema
 frontmatter เป็น key ระดับบนสุดเท่านั้น (flat) ห้ามซ้อน object เพราะ Obsidian Properties/Bases ใช้ไม่ได้
 ดู field ที่บังคับใน `templates/` และ `scripts/wiki_lint.py`

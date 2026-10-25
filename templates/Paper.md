@@ -6,6 +6,8 @@ authors: []
 year:
 doi: ""
 url: ""
+working_paper: ""     # เช่น "NBER Working Paper 5375 · 10.3386/w5375" ถ้าอ่านจากฉบับนี้
+verified_against: abstract   # fulltext | working_paper | abstract
 status: queued
 tags: [paper]
 created: {{date}}

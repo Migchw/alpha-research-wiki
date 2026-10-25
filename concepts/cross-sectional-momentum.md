@@ -16,5 +16,8 @@ created: 2026-10-24
 (lookback, skip, holding, quantile) จึงเป็นตัวอย่างที่ดีของการนับ trial เพื่อกัน overfitting
 
 ## หลักฐาน (ลิงก์ paper)
-- [[jegadeesh-titman-1993]]: baseline ของ winner-minus-loser (ตรวจระดับ abstract)
-- [[novy-marx-2012]]: ผลมาจากช่วงกลาง ดู [[intermediate-horizon-momentum]]
+- [[jegadeesh-titman-1993]]: baseline ของ winner-minus-loser (ตรวจกับ full text)
+- [[novy-marx-2012]]: ผลมาจากช่วงกลาง ดู [[intermediate-horizon-momentum]] (ระดับ abstract)
+- [[chan-jegadeesh-lakonishok-1996]]: momentum ราคากับ momentum ของข่าวกำไรต่างทำนายผลได้ ไม่มีตัวไหนกลืนอีกตัว (working paper)
+- [[daniel-moskowitz-2016]]: momentum พังหลังตลาดขาลงเมื่อตลาดดีดกลับ เพราะ beta ของผู้แพ้สูง (working paper)
+- [[chui-titman-wei-2010]]: ขนาดของ momentum ต่างกันตามวัฒนธรรมของประเทศ (ระดับ abstract)

@@ -5,7 +5,7 @@
 @AGENTS.md
 
 ## เฉพาะ Claude Code
-- Skills อยู่ใน `.claude/skills/`: `/ingest-paper`, `/log-experiment`, `/wiki-lint`
+- Skills อยู่ใน `.claude/skills/`: `/find-paper`, `/ingest-paper`, `/log-experiment`, `/wiki-lint`
 - Subagent `reviewer` (`.claude/agents/reviewer.md`) ต้องตรวจทุก experiment ก่อนเปลี่ยน `reviewer_verdict`
   และก่อน promote hypothesis เป็น factor
 - Hook รัน `python scripts/wiki_lint.py` หลังเขียนไฟล์ใน vault ถ้า lint fail ให้แก้ก่อนทำงานต่อ

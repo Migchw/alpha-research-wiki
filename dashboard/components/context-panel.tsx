@@ -226,7 +226,7 @@ function HypothesisContext({ row, experiments, papers, articles }: { row: Hypoth
 function PaperContext({ document, articles, hypotheses }: { document: WikiDoc; articles: ArticleRow[]; hypotheses: HypothesisRow[] }) {
   const meta = document.meta;
   const authors = (meta.authors || '').replace(/^\[|\]$/g, '').split(',').map((name) => name.trim()).filter(Boolean);
-  const fulltext = meta.verified_against === 'fulltext';
+  const basis = meta.verified_against || 'abstract';
   const usedBy = hypotheses.filter((item) => item.sourcePapers.includes(document.slug));
   return (
     <div className="mb-6 space-y-4">
@@ -239,7 +239,9 @@ function PaperContext({ document, articles, hypotheses }: { document: WikiDoc; a
           <dt className="text-muted-foreground">ตรวจกับ</dt>
           <dd className="flex flex-wrap items-center gap-2">
             <VerificationBadge value={document.verification} />
-            {fulltext ? 'เทียบกับ full text แล้ว เลขหน้าในตารางอ้างอิงได้' : 'อ่านได้แค่ abstract ข้อมูลส่วนใหญ่ยังต้องรอตรวจกับต้นฉบับ'}
+            {basis === 'fulltext' ? 'เทียบกับฉบับตีพิมพ์แล้ว เลขหน้าเป็นของวารสาร'
+              : basis === 'working_paper' ? `เทียบกับ working paper แล้ว (${meta.working_paper || 'ฉบับก่อนตีพิมพ์'}) เลขหน้าเป็นของ working paper ตัวเลขอาจต่างจากฉบับตีพิมพ์เล็กน้อย`
+              : 'อ่านได้แค่ abstract ข้อมูลส่วนใหญ่ยังต้องรอตรวจกับต้นฉบับ'}
           </dd>
         </dl>
         <p className="text-sm text-muted-foreground">หน้านี้คือ <b>source note</b> สำหรับงานวิจัย เก็บเป็นตาราง claim สั้นๆ พร้อมเลขหน้า ถ้าอยากเข้าใจ paper ทั้งเรื่อง ให้อ่านบทความด้านบนก่อน</p>
