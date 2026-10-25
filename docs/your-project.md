@@ -49,7 +49,8 @@ npm run dev        # http://localhost:3000 · แก้โน้ตแล้ว�
 
 ใช้หัวข้อ Hands-on project ของตัวเอง ไม่ต้องเป็น momentum
 
-1. **เลือก paper 1 ชิ้น** ที่เกี่ยวกับ project หา DOI และฉบับที่อ่านได้ฟรี (`/find-paper` หรือทำตาม
+1. **เลือก paper 1 ชิ้น** ที่เกี่ยวกับ project (หาไอเดียได้จาก [ML-Quant](https://www.ml-quant.com) ที่รวม paper ใหม่ด้าน quant
+   ทุกสัปดาห์แยกตามหัวข้อ หรือจาก `reading-list.md`) หา DOI และฉบับที่อ่านได้ฟรี (`/find-paper` หรือทำตาม
    `.claude/skills/find-paper/SKILL.md`) วาง PDF ไว้ที่ `raw/pdf/` (ไม่ถูก commit)
 2. **ingest** ด้วย `/ingest-paper <citekey>` หรือเขียนเองจาก `templates/Paper.md`
    - `status: ingested` · มี claim อย่างน้อย 5 ข้อ แยก fact / interpretation / open question
