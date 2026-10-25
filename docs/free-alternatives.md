@@ -69,7 +69,10 @@ agy                       # แล้วพิมพ์ /ingest-paper <citekey> 
 - `/wiki-lint`: agy เปิด `.agents/skills/wiki-lint/SKILL.md` แล้วรัน lint ได้ `PASS`
 - `/find-paper` (Griffin-Ji-Martin 2003): ใช้ประมาณ 3 นาที ตรวจ Crossref และ OpenAlex แล้วเพิ่มแถวใน `reading-list.md` ·
   DOI `10.1046/j.1540-6261.2003.00614.x`, JF 58(6) 2515–2547 ตรงกับ Crossref ที่เราตรวจซ้ำเอง · lint PASS
-- ยังไม่ได้ทดสอบ `/ingest-paper`, `/log-experiment` และ `/reviewer` กับ agy
+- `/ingest-paper daniel-moskowitz-2016` (NBER WP 47 หน้า): ใช้ประมาณ 11 นาที เขียน source note 12 claim, บทความ, concept
+  `momentum-crashes` และลิงก์เข้า H-001 · lint PASS · ตัวเลข 15 ตัวที่สุ่มตรวจมีอยู่ในต้นฉบับทั้งหมด
+  แต่อ้างลำดับหน้าของไฟล์ PDF แทนเลขที่พิมพ์บนหน้า (คลาด 2 หน้า) เราแก้ skill ให้ระบุชัดแล้ว ยังไงก็ต้องเปิดต้นฉบับตรวจเลขหน้าเอง
+- ยังไม่ได้ทดสอบ `/log-experiment` และ `/reviewer` กับ agy
 
 `.agents/skills/` สร้างจาก `.claude/skills/` ด้วย `python scripts/sync_skills.py` ถ้าแก้ skill ให้แก้ที่ `.claude/`
 แล้วรันสคริปต์นี้ (`--check` ใช้ตรวจว่ายังตรงกัน)
