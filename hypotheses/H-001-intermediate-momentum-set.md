@@ -34,6 +34,7 @@ created: 2026-10-24
 ## Experiments
 - [[E-001]]: baseline 12-1 (in-sample) · trial 1
 - [[E-002]]: intermediate 12-7 (in-sample) · trial 2
+- [[E-003]]: baseline 12-1 (out-of-sample, `--force-oos` ก่อนผ่าน Reviewer) · trial 3
 
 ## Verdict
 ยังไม่มี — รอผล experiment และ [[reviewer-gate|Reviewer]]
