@@ -8,11 +8,12 @@ import rehypeSlug from 'rehype-slug';
 import { FileText, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { KindBadge, VerificationBadge } from '@/components/status-badge';
 import { NotesExplorer } from '@/components/notes-explorer';
+import { ExperimentLedgerMini } from '@/components/context-panel';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTheme } from '@/components/use-theme';
 import { cn } from '@/lib/utils';
-import { kindLabel, type DocSummary, type WikiDoc } from '@/lib/wiki';
+import { kindLabel, type DocSummary, type ExperimentRow, type WikiDoc } from '@/lib/wiki';
 
 const darkVars = {
   fontFamily: 'Anuphan, sans-serif', fontSize: '18px', background: '#1a1917',
@@ -63,11 +64,13 @@ function MermaidDiagram({ chart }: { chart: string }) {
 
 type Related = { slug: string; title: string; kind: string };
 
-export default function MarkdownReader({ document, related, docs }: { document: WikiDoc; related: Related[]; docs: DocSummary[] }) {
+export default function MarkdownReader({ document, related, docs, context, experiments }: {
+  document: WikiDoc; related: Related[]; docs: DocSummary[]; context?: ReactNode; experiments: ExperimentRow[];
+}) {
   const [showList, setShowList] = useState(true);
 
   return (
-    <main className="mx-auto w-full max-w-[1800px] px-6 py-6">
+    <main className="mx-auto w-full max-w-[1800px] px-4 py-6 sm:px-6">
       <div className={cn('grid gap-6', showList && 'xl:grid-cols-[21rem_minmax(0,1fr)]')}>
         {showList && (
           <aside className="hidden xl:sticky xl:top-6 xl:block xl:h-[calc(100vh-3rem)]">
@@ -101,7 +104,9 @@ export default function MarkdownReader({ document, related, docs }: { document: 
                 <p className="num mt-3 flex items-center gap-2 text-sm text-muted-foreground"><FileText className="size-4 shrink-0" aria-hidden />{document.path}</p>
               </header>
 
-              <article className="markdown-body rounded-lg border border-border bg-card px-12 py-12">
+              {context}
+
+              <article className="markdown-body rounded-lg border border-border bg-card px-5 py-8 sm:px-12 sm:py-12">
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeSlug]}
@@ -110,6 +115,13 @@ export default function MarkdownReader({ document, related, docs }: { document: 
                       const child = Array.isArray(children) ? children[0] : children;
                       if (isValidElement<{ className?: string; children?: ReactNode }>(child) && child.props.className === 'language-mermaid') {
                         return <MermaidDiagram chart={String(child.props.children).replace(/\n$/, '')} />;
+                      }
+                      // ```ledger H-001``` in an article becomes the live experiment table for that hypothesis,
+                      // so prose never carries hand-typed metrics.
+                      if (isValidElement<{ className?: string; children?: ReactNode }>(child) && child.props.className === 'language-ledger') {
+                        const id = String(child.props.children).trim();
+                        const rows = experiments.filter((row) => row.hypothesisId === id).sort((a, b) => (a.trialNo ?? 0) - (b.trialNo ?? 0));
+                        return <div className="my-6"><ExperimentLedgerMini rows={rows} /></div>;
                       }
                       return <pre>{children}</pre>;
                     },

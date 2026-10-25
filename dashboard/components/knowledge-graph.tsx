@@ -16,6 +16,7 @@ type SimLink = SimulationLinkDatum<SimNode>;
 type View = { x: number; y: number; k: number };
 
 export const graphKinds = [
+  { kind: 'article', label: 'Article', color: 'var(--foreground)' },
   { kind: 'hypothesis', label: 'Hypothesis', color: 'var(--primary)' },
   { kind: 'experiment', label: 'Experiment', color: 'var(--thesis)' },
   { kind: 'factor', label: 'Factor', color: 'var(--chart-4)' },

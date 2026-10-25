@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ContextPanel } from '@/components/context-panel';
 import { docSummaries, wiki } from '@/lib/wiki-data';
 import MarkdownReader from './reader';
 
@@ -35,5 +36,18 @@ export default async function ReaderPage({ params }: PageProps) {
     .slice(0, 8)
     .map(({ slug: relatedSlug, title, kind }) => ({ slug: relatedSlug, title, kind }));
 
-  return <MarkdownReader document={document} related={related} docs={docSummaries()} />;
+  const contextData = {
+    ...wiki.research,
+    docs: wiki.documents.map(({ slug: docSlug, title, kind, group }) => ({ slug: docSlug, title, kind, group })),
+  };
+
+  return (
+    <MarkdownReader
+      document={document}
+      related={related}
+      docs={docSummaries()}
+      context={<ContextPanel document={document} data={contextData} />}
+      experiments={wiki.research.experiments}
+    />
+  );
 }

@@ -36,6 +36,11 @@ export default function Overview({ vaultName, generatedAt, stats, hypotheses, ex
         ]}
       />
 
+      <Link href="/articles" className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-primary/40 bg-primary/5 px-5 py-4 hover:border-primary">
+        <span><span className="block text-xl">เพิ่งเข้ามาครั้งแรก? เริ่มจากบทความ</span><span className="text-base text-muted-foreground">อธิบาย paper และงานวิจัย H-001 แบบเล่าเป็นเรื่อง ก่อนลงไปอ่านโน้ตย่อย</span></span>
+        <span className="num text-primary">{stats.articles} บทความ →</span>
+      </Link>
+
       <section className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader className="border-b border-border">

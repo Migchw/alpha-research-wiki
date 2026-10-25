@@ -33,8 +33,9 @@ export function HypothesisStatusBadge({ value, className }: { value: string; cla
   return <Badge variant="outline" className={cn('h-6 gap-1.5 px-2 text-sm', style[value] || 'text-muted-foreground', className)}><Icon aria-hidden />{value || 'idea'}</Badge>;
 }
 
-/** Note type, coloured the same way as the graph nodes (hypothesis amber, experiment blue, factor purple, concept green, paper grey). */
+/** Note type, coloured the same way as the graph nodes (article ink, hypothesis amber, experiment blue, factor purple, concept green, paper grey). */
 const kindStyle: Record<string, string> = {
+  article: 'bg-foreground/10 text-foreground',
   hypothesis: 'bg-primary/15 text-primary',
   experiment: 'bg-thesis/15 text-thesis',
   factor: 'bg-chart-4/15 text-chart-4',

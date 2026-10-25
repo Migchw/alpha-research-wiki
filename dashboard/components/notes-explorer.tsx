@@ -9,6 +9,7 @@ import type { DocSummary } from '@/lib/wiki';
 
 const groups = [
   { kind: 'all', label: 'ทั้งหมด' },
+  { kind: 'article', label: 'Article' },
   { kind: 'hypothesis', label: 'Hypothesis' },
   { kind: 'experiment', label: 'Experiment' },
   { kind: 'paper', label: 'Paper' },
@@ -17,6 +18,7 @@ const groups = [
 ] as const;
 
 const dot: Record<string, string> = {
+  article: 'bg-foreground',
   hypothesis: 'bg-primary',
   experiment: 'bg-thesis',
   factor: 'bg-chart-4',

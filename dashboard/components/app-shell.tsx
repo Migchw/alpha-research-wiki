@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookMarked, Columns3, LayoutDashboard, Library, Network, ScrollText, Table2 } from 'lucide-react';
+import { BookMarked, BookOpen, Columns3, LayoutDashboard, Library, Network, ScrollText, Table2 } from 'lucide-react';
 import { CommandPalette } from '@/components/command-palette';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -11,6 +11,7 @@ import type { NavDoc } from '@/lib/wiki';
 
 const nav = [
   { href: '/', label: 'ภาพรวม', icon: LayoutDashboard },
+  { href: '/articles', label: 'บทความ (เริ่มที่นี่)', icon: BookOpen },
   { href: '/board', label: 'Research Board', icon: Columns3 },
   { href: '/ledger', label: 'Experiment Ledger', icon: Table2 },
   { href: '/library', label: 'คลังความรู้', icon: Library },

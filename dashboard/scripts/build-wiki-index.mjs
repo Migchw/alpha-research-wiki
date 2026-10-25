@@ -96,7 +96,7 @@ async function markdownFiles(relativeDir, kind) {
       confidence: '',
       tags: tagList(meta.tags),
       group: meta.id || meta.citekey || '',
-      brief: section(markdown, 'สรุป 3 บรรทัด') || section(markdown, 'นิยาม') || section(markdown, 'ทำไมถึงคิดว่าน่าจะใช้ได้ (กลไก)') || firstParagraph(markdown),
+      brief: section(markdown, 'สรุปสั้นก่อนอ่าน') || section(markdown, 'สรุป 3 บรรทัด') || section(markdown, 'นิยาม') || section(markdown, 'ทำไมถึงคิดว่าน่าจะใช้ได้ (กลไก)') || firstParagraph(markdown),
       meta,
       markdown,
       path: `${relativeDir}/${name}`.replaceAll('\\', '/'),
@@ -110,7 +110,8 @@ async function singleDocument(relativePath, slug, title) {
   return { kind: 'schema', name: path.basename(relativePath, '.md'), slug, title, date: meta.updated || '', status: meta.status || 'active', verification: '', confidence: '', tags: [], group: '', brief: '', meta, markdown, path: relativePath };
 }
 
-const [papers, concepts, hypotheses, experiments, factors, agents, readme, readingList] = await Promise.all([
+const [articles, papers, concepts, hypotheses, experiments, factors, agents, readme, readingList] = await Promise.all([
+  markdownFiles('articles', 'article'),
   markdownFiles('papers', 'paper'),
   markdownFiles('concepts', 'concept'),
   markdownFiles('hypotheses', 'hypothesis'),
@@ -121,7 +122,7 @@ const [papers, concepts, hypotheses, experiments, factors, agents, readme, readi
   singleDocument('reading-list.md', 'reading-list', 'Reading list'),
 ]);
 
-const notes = [...hypotheses, ...experiments, ...factors, ...papers, ...concepts];
+const notes = [...articles, ...hypotheses, ...experiments, ...factors, ...papers, ...concepts];
 const allDocuments = [...notes, agents, readme, readingList];
 const documentLookup = new Map();
 for (const document of allDocuments) {
@@ -169,12 +170,20 @@ const documents = allDocuments.map((document) => ({
   related: linkedTitles(document),
   brief: (document.brief || '').slice(0, 520),
   path: document.path,
+  // Flat frontmatter (strings) for the reader's context panels; schema docs don't need it.
+  meta: document.kind === 'schema' ? {} : document.meta,
   markdown: readerMarkdown(document.markdown),
 }));
 
 // Research Board and Experiment Ledger read these flat records (frontmatter is flat by schema).
 const slugOf = (name) => documentLookup.get(name.toLowerCase())?.slug || '';
 const research = {
+  // Articles point at the notes they explain through `about: [[...]]`.
+  articles: articles.map((doc) => ({
+    slug: doc.slug, title: doc.title, brief: (doc.brief || '').slice(0, 320), status: doc.meta.status || 'draft',
+    readMin: numberOrNull(doc.meta.read_min), basis: doc.meta.basis || '', created: doc.meta.created || '',
+    about: [...(doc.meta.about || '').matchAll(/\[\[([^\]|#]+)/g)].map((m) => slugOf(m[1].trim())).filter(Boolean),
+  })),
   hypotheses: hypotheses.map((doc) => ({
     slug: doc.slug,
     id: doc.meta.id || doc.name,
@@ -183,6 +192,9 @@ const research = {
     signal: doc.meta.signal || '',
     universe: doc.meta.universe || '',
     killCriteria: doc.meta.kill_criteria || '',
+    inSample: doc.meta.in_sample || '',
+    outOfSample: doc.meta.out_of_sample || '',
+    sourcePapers: [...(doc.meta.source_papers || '').matchAll(/\[\[([^\]|#]+)/g)].map((m) => slugOf(m[1].trim())).filter(Boolean),
     rejectedReason: doc.meta.rejected_reason || '',
     created: doc.meta.created || '',
     experiments: experiments.filter((exp) => linkTarget(exp.meta.hypothesis) === doc.name).length,
@@ -266,6 +278,7 @@ const index = {
   generatedAt: new Date().toISOString(),
   vaultName: path.basename(vaultRoot),
   stats: {
+    articles: count('article'),
     papers: count('paper'),
     concepts: count('concept'),
     hypotheses: count('hypothesis'),
