@@ -17,7 +17,7 @@ created: 2026-10-24
 
 ## หลักฐาน (ลิงก์ paper)
 - [[jegadeesh-titman-1993]]: baseline ของ winner-minus-loser (ตรวจกับ full text)
-- [[novy-marx-2012]]: ผลมาจากช่วงกลาง ดู [[intermediate-horizon-momentum]] (ระดับ abstract)
+- [[novy-marx-2012]]: ผลมาจากช่วงกลาง (เดือนที่ 12 ถึง 7) มากกว่าช่วงล่าสุด ดู [[intermediate-horizon-momentum]] (MS p. 9–15)
 - [[chan-jegadeesh-lakonishok-1996]]: momentum ราคากับ momentum ของข่าวกำไรต่างทำนายผลได้ ไม่มีตัวไหนกลืนอีกตัว (working paper)
 - [[daniel-moskowitz-2016]]: momentum พังหลังตลาดขาลงเมื่อตลาดดีดกลับ เพราะ beta ของผู้แพ้สูง (working paper)
 - [[chui-titman-wei-2010]]: ขนาดของ momentum ต่างกันตามวัฒนธรรมของประเทศ (ระดับ abstract)

@@ -9,7 +9,7 @@
 | Paper | ที่มา | สถานะ |
 |---|---|---|
 | Jegadeesh & Titman (1993), Returns to Buying Winners and Selling Losers | [10.1111/j.1540-6261.1993.tb04702.x](https://doi.org/10.1111/j.1540-6261.1993.tb04702.x) · JF 48(1) 65–91 | ✅ 📄 [[jegadeesh-titman-1993]] 📖 (full text) |
-| Novy-Marx (2012), Is Momentum Really Momentum? | [10.1016/j.jfineco.2011.05.003](https://doi.org/10.1016/j.jfineco.2011.05.003) · JFE 103(3) 429–453 | ✅ 📄 [[novy-marx-2012]] 📖 (abstract) |
+| Novy-Marx (2012), Is Momentum Really Momentum? | [10.1016/j.jfineco.2011.05.003](https://doi.org/10.1016/j.jfineco.2011.05.003) · JFE 103(3) 429–453 | ✅ 📄 [[novy-marx-2012]] 📖 (author manuscript) |
 | Chan, Jegadeesh & Lakonishok (1996), Momentum Strategies | [10.1111/j.1540-6261.1996.tb05222.x](https://doi.org/10.1111/j.1540-6261.1996.tb05222.x) · JF 51(5) 1681–1713 · NBER w5375 | ✅ 📄 [[chan-jegadeesh-lakonishok-1996]] 📖 (working paper) |
 | Moskowitz & Grinblatt (1999), Do Industries Explain Momentum? | [10.1111/0022-1082.00146](https://doi.org/10.1111/0022-1082.00146) · JF 54(4) 1249–1290 | ✅ |
 | Lee & Swaminathan (2000), Price Momentum and Trading Volume | [10.1111/0022-1082.00280](https://doi.org/10.1111/0022-1082.00280) · JF 55(5) 2017–2069 | ✅ |
