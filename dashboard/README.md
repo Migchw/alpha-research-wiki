@@ -33,12 +33,13 @@ npm run dev        # เปิด http://localhost:3000 (สร้าง index �
 
 | หน้า | ใช้ทำอะไร |
 |---|---|
+| บทความ `/articles` | **เริ่มอ่านที่นี่** บทความอธิบาย paper และรายงานงานวิจัยแบบเล่าเป็นเรื่อง (โฟลเดอร์ `articles/` ใน vault) |
 | ภาพรวม `/` | จำนวน hypothesis / experiment / paper, experiment ล่าสุด, รายการที่รอ Reviewer, local graph ของ hypothesis ที่กำลังทดสอบ |
 | Research Board `/board` | hypothesis แยกตาม status: idea → preregistered → testing → promoted และ **Graveyard** (`rejected` พร้อม `rejected_reason`) |
 | Experiment Ledger `/ledger` | ทุก trial ของทุก hypothesis เรียงตาม Sharpe, t-stat, trial, annual return, max drawdown ได้ กรอง in-sample / out-of-sample ได้ |
 | คลังความรู้ `/library` | ตารางโน้ตทั้งหมด กรองตามประเภทและสถานะการตรวจ |
 | Graph View `/graph` | กราฟจาก `[[wikilink]]` จริงในโน้ต (แบบ Obsidian) |
-| `/read/<slug>` | อ่านโน้ตฉบับเต็ม wikilink กดไปโน้ตปลายทางได้ |
+| `/read/<slug>` | อ่านโน้ตฉบับเต็ม หน้า experiment / hypothesis / paper มีกล่องอธิบายภาษาง่ายด้านบน (สร้างจาก frontmatter) |
 
 สีของประเภทโน้ต: hypothesis ส้ม · experiment ฟ้า · factor ม่วง · concept เขียว · paper เทา
 ขอบสีส้มในกราฟ = ยังไม่ผ่านการตรวจ (paper ที่ยังไม่ได้เทียบกับ full text หรือ experiment ที่ verdict ยัง `pending`)

@@ -46,4 +46,6 @@ python scripts/backtest_momentum.py --hypothesis <H-xxx> --lookback <lookback> -
 
 ## 6. ปิดงาน
 - รัน `python scripts/wiki_lint.py` ต้อง PASS
+- ถ้ามีไฟล์ใน `articles/` ที่ `about:` ลิงก์ไปยัง hypothesis นี้ ให้แจ้งผู้ใช้ว่าควรอ่านเนื้อความของบทความนั้นใหม่
+  เพราะสถานะเพิ่งเปลี่ยน (ตารางผลใน ```ledger``` อัปเดตเอง แต่ prose ไม่อัปเดต)
 - สรุปให้ผู้ใช้ 4 บรรทัด: experiment ที่ได้ · verdict · จำนวน trial รวม · status ของ hypothesis หลังจบ

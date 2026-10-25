@@ -100,8 +100,14 @@ function ExperimentContext({ row, hypothesis }: { row: ExperimentRow; hypothesis
   const lookback = lookbackText[row.lookback];
   const window = hypothesis ? (row.sample === 'out_of_sample' ? hypothesis.outOfSample : hypothesis.inSample) : '';
   const forced = row.knownBiases.includes('oos-before-review');
+  // The plain-language method panels describe scripts/backtest_momentum.py; other scripts only get the generic panels.
+  const momentum = row.codeRef.startsWith('scripts/backtest_momentum.py');
+  const costs = row.costsBps ?? 0;
+  const groups = row.quantiles ?? 5;
+  const script = row.codeRef.split('@')[0];
   return (
     <div className="mb-6 space-y-4">
+      {momentum && <>
       <Panel title="experiment นี้ทดสอบอะไร" icon={FlaskConical}>
         <p>
           คำถามคือ ถ้าทุกสิ้นเดือนเรา<b>ซื้อหุ้นกลุ่มที่ราคาขึ้นมากที่สุด</b> และ<b>ขายชอร์ตกลุ่มที่ขึ้นน้อยที่สุด</b>ใน {hypothesis?.universe || 'SET100'}
@@ -123,13 +129,14 @@ function ExperimentContext({ row, hypothesis }: { row: ExperimentRow; hypothesis
         <Panel title="ทำอะไรกับข้อมูลบ้าง" icon={Scale}>
           <ol className="list-decimal space-y-1.5 pl-5">
             <li>ทุกสิ้นเดือน คำนวณผลตอบแทนย้อนหลังของหุ้นทุกตัวตามสูตร {row.lookback}</li>
-            <li>เรียงหุ้นจากน้อยไปมาก แบ่งเป็น 5 กลุ่มเท่าๆ กัน (quintile)</li>
-            <li>ซื้อกลุ่มบนสุด (Q5) และขายชอร์ตกลุ่มล่างสุด (Q1) ด้วยเงินเท่ากันทุกตัว</li>
-            <li>ถือ 1 เดือน แล้วหักค่าธรรมเนียม 30 bps (0.30%) ทุกครั้งที่ซื้อขาย</li>
+            <li>เรียงหุ้นจากน้อยไปมาก แบ่งเป็น {groups} กลุ่มเท่าๆ กัน{groups === 5 ? ' (quintile)' : ''}</li>
+            <li>ซื้อกลุ่มบนสุด (Q{groups}) และขายชอร์ตกลุ่มล่างสุด (Q1) ด้วยเงินเท่ากันทุกตัว</li>
+            <li>ถือ 1 เดือน แล้วหักค่าธรรมเนียม {costs} bps ({(costs / 100).toFixed(2)}%) ทุกครั้งที่ซื้อขาย</li>
             <li>ทำซ้ำทุกเดือน แล้วสรุปผลตอบแทนทั้งช่วงเป็นตัวเลขด้านล่าง</li>
           </ol>
         </Panel>
       </div>
+      </>}
 
       <Panel title="อ่านตัวเลขยังไง" icon={ShieldCheck}>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
@@ -145,12 +152,17 @@ function ExperimentContext({ row, hypothesis }: { row: ExperimentRow; hypothesis
       </Panel>
 
       <Panel title="ต้องรัน Python เองไหม" icon={Play}>
-        <p>ไม่ต้อง ถ้าแค่อยากอ่านผล ทุกอย่างอยู่ในหน้านี้แล้ว ถ้าอยากรันซ้ำเพื่อตรวจเอง มี 2 ทาง</p>
+        <p>
+          ไม่ต้อง ถ้าแค่อยากอ่านผล ทุกอย่างอยู่ในหน้านี้แล้ว ถ้าอยากรันซ้ำเพื่อตรวจเอง{momentum ? ' มี 2 ทาง' : ' ให้ดูวิธีรันของสคริปต์ที่ระบุไว้'}
+          {' '}<span className="num text-sm text-muted-foreground">({row.codeRef || 'ไม่ระบุ code_ref'})</span>
+        </p>
+        {momentum && <>
         <ul className="list-disc space-y-1.5 pl-5">
           <li><b>Google Colab</b> (ไม่ต้องติดตั้งอะไร): เปิด <code>notebooks/backtest_momentum.ipynb</code> แล้วกด Run all</li>
           <li><b>Terminal</b> ในเครื่อง (ใส่ <code>--dry-run</code> เพื่อดูผลโดยไม่สร้าง trial ใหม่):</li>
         </ul>
-        <pre className="thin-scroll overflow-x-auto rounded-md bg-secondary px-4 py-3 text-sm"><code>{`pip install -r requirements.txt\npython scripts/backtest_momentum.py --hypothesis ${row.hypothesisId || 'H-001'} --lookback ${row.lookback} --sample ${row.sample}${forced ? ' --force-oos' : ''} --dry-run`}</code></pre>
+        <pre className="thin-scroll overflow-x-auto rounded-md bg-secondary px-4 py-3 text-sm"><code>{`pip install -r requirements.txt\npython ${script} --hypothesis ${row.hypothesisId || 'H-001'} --lookback ${row.lookback} --sample ${row.sample}${costs !== 30 ? ` --costs-bps ${costs}` : ''}${forced ? ' --force-oos' : ''} --dry-run`}</code></pre>
+        </>}
       </Panel>
 
       <h2 className="pt-2 text-2xl">รายงานที่สคริปต์เขียน</h2>

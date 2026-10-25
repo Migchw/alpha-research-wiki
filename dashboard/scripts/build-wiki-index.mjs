@@ -30,7 +30,9 @@ function cleanText(value) {
   return value
     .replace(/!\[.*?\]\(.*?\)/g, '')
     .replace(/\[\[(?:[^|\]]+\|)?([^\]]+)\]\]/g, '$1')
-    .replace(/[*_`>#-]/g, ' ')
+    // List markers only at line start; keep "-" and "_" inside words (H-001, 12-1, backtest_momentum.py).
+    .replace(/^\s*(?:[-*+]|\d+\.)\s+/gm, ' ')
+    .replace(/[*`>#]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -144,6 +146,12 @@ function readerMarkdown(markdown) {
     });
 }
 
+// The reader already shows the title above the card, so drop a leading "# Title" that repeats it.
+function withoutTitleHeading(document) {
+  const body = withoutFrontmatter(document.markdown);
+  return firstHeading(document.markdown) === document.title ? body.replace(/^#\s+.+\r?\n?/, '') : document.markdown;
+}
+
 // Notes a document links to through a real wikilink, by title (the "related" column in the library).
 function linkedTitles(document) {
   if (document.kind === 'schema') return [];
@@ -172,7 +180,7 @@ const documents = allDocuments.map((document) => ({
   path: document.path,
   // Flat frontmatter (strings) for the reader's context panels; schema docs don't need it.
   meta: document.kind === 'schema' ? {} : document.meta,
-  markdown: readerMarkdown(document.markdown),
+  markdown: readerMarkdown(withoutTitleHeading(document)),
 }));
 
 // Research Board and Experiment Ledger read these flat records (frontmatter is flat by schema).
@@ -216,6 +224,9 @@ const research = {
       turnover: numberOrNull(doc.meta.turnover),
       verdict: doc.meta.reviewer_verdict || 'pending',
       knownBiases: tagList(doc.meta.known_biases),
+      costsBps: numberOrNull(doc.meta.costs_bps),
+      quantiles: numberOrNull(doc.meta.quantiles),
+      codeRef: doc.meta.code_ref || '',
       runAt: doc.meta.run_at || '',
     };
   }),

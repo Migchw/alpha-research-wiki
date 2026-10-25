@@ -21,6 +21,7 @@ export type ExperimentRow = {
   slug: string; id: string; hypothesisSlug: string; hypothesisId: string; trialNo: number | null;
   lookback: string; sample: string; sharpe: number | null; annReturn: number | null; tStat: number | null;
   maxDd: number | null; turnover: number | null; verdict: string; knownBiases: string[]; runAt: string;
+  costsBps: number | null; quantiles: number | null; codeRef: string;
 };
 
 export type WikiIndex = {

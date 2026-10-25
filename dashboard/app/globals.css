@@ -274,3 +274,6 @@
 /* Search results link to #heading anchors; keep the heading clear of the top edge and mark it briefly. */
 .markdown-body :is(h1, h2, h3, h4) { scroll-margin-top: 1.5rem; }
 .markdown-body :is(h1, h2, h3, h4):target { background: color-mix(in oklch, var(--primary) 14%, transparent); border-radius: 4px; }
+
+/* Long inline paths (scripts/x.py@sha) must wrap on phones; block code keeps its own scroll. */
+:not(pre) > code, .markdown-body a { overflow-wrap: anywhere; }
