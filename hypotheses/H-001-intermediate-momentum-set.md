@@ -1,7 +1,7 @@
 ---
 type: hypothesis
 id: H-001
-status: preregistered
+status: testing
 source_papers: ["[[novy-marx-2012]]", "[[jegadeesh-titman-1993]]"]
 signal: "cumulative return t-12..t-7, skip t-1"
 universe: SET100
@@ -32,7 +32,8 @@ created: 2026-10-24
 - Kill criteria: OOS t-stat < 1.5 หรือ Sharpe < 0.3 หลังหักค่าธรรมเนียม
 
 ## Experiments
-- [[E-001]]: baseline 12-1 (in-sample)
+- [[E-001]]: baseline 12-1 (in-sample) · trial 1
+- [[E-002]]: intermediate 12-7 (in-sample) · trial 2
 
 ## Verdict
 ยังไม่มี — รอผล experiment และ [[reviewer-gate|Reviewer]]
