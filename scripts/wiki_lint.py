@@ -50,7 +50,7 @@ PREREG = ["signal", "universe", "in_sample", "out_of_sample", "expected_sign", "
 METRICS = ["sharpe", "ann_return", "t_stat", "max_dd"]
 
 WIKILINK = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|[^\]]*)?\]\]")
-SKIP_DIRS = {"templates", "dashboard", "node_modules", ".obsidian", ".claude", ".git", "raw"}
+SKIP_DIRS = {"templates", "dashboard", "node_modules", ".obsidian", ".claude", ".agents", ".git", "raw"}
 
 
 def split_frontmatter(text: str) -> tuple[dict | None, str]:
