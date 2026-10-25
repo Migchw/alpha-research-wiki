@@ -284,6 +284,27 @@ for (const document of allDocuments) {
   flush();
 }
 
+// Paper Feed: ไฟล์ที่ scripts/paper_feed.py ดึงมาเอง (ถ้ามี) indexer ไม่เรียก network
+const normalizeTitle = (value = '') => value.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const feedFile = await readFile(path.join(projectRoot, 'data', 'paper-feed.json'), 'utf8').catch(() => null);
+const vaultText = [readingList.markdown, ...papers.map((paper) => paper.markdown)].join('\n');
+const vaultTitles = normalizeTitle(vaultText);
+let paperFeed = null;
+if (feedFile) {
+  const feed = JSON.parse(feedFile);
+  paperFeed = {
+    fetchedAt: feed.fetched_at || '',
+    topic: feed.topic || '',
+    credit: feed.credit || '',
+    items: (feed.items || []).map((item) => {
+      // arXiv id / SSRN id หรือชื่อ paper ปรากฏใน reading-list หรือ papers/ แล้ว
+      const id = (item.identifier || '').replace(/^(arXiv:|SSRN\s+)/i, '');
+      const inVault = Boolean((id && vaultText.includes(id)) || (item.title && vaultTitles.includes(normalizeTitle(item.title))));
+      return { ...item, inVault };
+    }),
+  };
+}
+
 const count = (kind) => notes.filter((document) => document.kind === kind).length;
 const index = {
   generatedAt: new Date().toISOString(),
@@ -300,6 +321,7 @@ const index = {
   research,
   documents,
   graph,
+  paperFeed,
 };
 
 await mkdir(path.join(projectRoot, 'data'), { recursive: true });

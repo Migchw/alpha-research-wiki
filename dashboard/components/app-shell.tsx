@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { BookMarked, BookOpen, Columns3, LayoutDashboard, Library, Network, ScrollText, Table2 } from 'lucide-react';
+import { BookMarked, BookOpen, Columns3, LayoutDashboard, Library, Network, Rss, ScrollText, Table2 } from 'lucide-react';
 import { CommandPalette } from '@/components/command-palette';
 import { Separator } from '@/components/ui/separator';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -17,6 +17,7 @@ const nav = [
   { href: '/library', label: 'คลังความรู้', icon: Library },
   { href: '/graph', label: 'Graph View', icon: Network },
   { href: '/read/reading-list', label: 'Reading list', icon: BookMarked },
+  { href: '/feed', label: 'Paper Feed', icon: Rss },
   { href: '/read/schema-agents', label: 'กติกา (AGENTS.md)', icon: ScrollText },
 ];
 

@@ -24,12 +24,19 @@ export type ExperimentRow = {
   costsBps: number | null; quantiles: number | null; codeRef: string;
 };
 
+export type FeedItem = {
+  title: string; authors: string[]; released: string; featured: string; venue: string; identifier: string;
+  source_url: string; summary: string; mlquant_url: string; inVault: boolean;
+};
+export type PaperFeed = { fetchedAt: string; topic: string; credit: string; items: FeedItem[] };
+
 export type WikiIndex = {
   generatedAt: string; vaultName: string;
   stats: { articles: number; papers: number; concepts: number; hypotheses: number; experiments: number; factors: number; pendingReview: number };
   research: { articles: ArticleRow[]; hypotheses: HypothesisRow[]; experiments: ExperimentRow[] };
   documents: WikiDoc[];
   graph: import('@/components/knowledge-graph').WikiGraph;
+  paperFeed: PaperFeed | null;
 };
 
 export const kindLabel: Record<string, string> = {
