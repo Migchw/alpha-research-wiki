@@ -96,3 +96,5 @@ vault เป็น Markdown + YAML ธรรมดา ไม่ผูกกั�
 
 - ห้าม commit PDF หรือ full-text ของ paper และไฟล์ราคา (มีใน `.gitignore` แล้ว)
 - เนื้อหาเพื่อการศึกษา ไม่ใช่คำแนะนำการลงทุน
+
+- License: [MIT](LICENSE)
