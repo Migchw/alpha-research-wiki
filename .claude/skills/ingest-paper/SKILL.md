@@ -20,8 +20,11 @@ Argument: `$ARGUMENTS` · มาตรฐานตัวอย่าง: `papers
 3. แปลงเป็นข้อความไว้ในเครื่อง (ไม่ commit) แล้วตรวจว่าแต่ละหน้ามีเลขหน้ากำกับ ใช้ PyMuPDF (`pymupdf`) เป็นหลัก
    เพราะ pypdf อ่านฟอนต์บางแบบแล้วคำแตก (เช่น "cumula tive" ใน Daniel-Moskowitz WP):
    ```bash
-   python -c "import pymupdf,sys;d=pymupdf.open(sys.argv[1]);open(sys.argv[2],'w',encoding='utf-8').write('\n'.join(f'=== page {i+1} ===\n'+p.get_text() for i,p in enumerate(d)))" raw/pdf/<ไฟล์>.pdf raw/pdf/<citekey>.txt
+   python -c "import pymupdf,sys;d=pymupdf.open(sys.argv[1]);open(sys.argv[2],'w',encoding='utf-8').write('\n'.join(f'=== pdf page {i+1} ===\n'+p.get_text() for i,p in enumerate(d)))" raw/pdf/<ไฟล์>.pdf raw/pdf/<citekey>.txt
    ```
+   **เลขหน้าที่อ้างคือเลขที่พิมพ์บนหน้ากระดาษ** (เลขวารสาร หรือเลขท้ายหน้าของ WP) ไม่ใช่ลำดับหน้าของไฟล์ (`pdf page N`)
+   ซึ่งมักเลื่อนเพราะปกหรือหน้าแรกไม่มีเลข เช่น DM WP: pdf page 9 = WP p. 7 ก่อนเขียน ให้เปิดดูเลขที่พิมพ์ของหน้าแรกๆ
+   แล้วบันทึกส่วนต่างไว้ใต้ claim table เช่น "WP p. = pdf page − 2"
    ถ้าข้อความอ่านไม่ได้ (เช่น ไฟล์สแกนที่ OCR เสียแบบ CJL 1996 WP) ให้เรนเดอร์หน้าที่ต้องใช้เป็นภาพแล้วอ่านทีละหน้า
    และบันทึกใน source note ว่าอ่านจากภาพ
    ตารางที่แปลงจาก PDF มักเพี้ยน ให้อ้างตัวเลขจากเนื้อความเป็นหลัก และตรวจตัวเลขในตารางกับประโยครอบข้างทุกครั้ง
