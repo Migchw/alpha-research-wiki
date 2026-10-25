@@ -43,6 +43,7 @@ vault นี้คือ **หน่วยความจำของกระ�
 
 ## ขั้นตอนมาตรฐาน (ใช้ได้กับทุก agent)
 ไฟล์ใน `.claude/skills/*/SKILL.md` เป็น Markdown ธรรมดา agent ตัวไหนก็อ่านแล้วทำตามได้ (Claude Code เรียกเป็น `/ชื่อ`)
+สำเนาสำหรับ agent อื่น (เช่น Antigravity CLI) อยู่ที่ `.agents/skills/` สร้างด้วย `python scripts/sync_skills.py` ห้ามแก้ตรงๆ
 - `find-paper` ตรวจว่า paper มีจริงและ metadata ถูก หาฉบับที่อ่านได้ฟรี และตรวจว่าไฟล์คือต้นฉบับ ไม่ใช่สรุปจาก AI
 - `ingest-paper` อ่านต้นฉบับแล้วเขียน source note (claim table + เลขหน้า) และบทความอธิบาย
 - `log-experiment` รัน backtest เป็น trial ใหม่ → Reviewer (`.claude/agents/reviewer.md`) → ตัดสินตาม kill criteria

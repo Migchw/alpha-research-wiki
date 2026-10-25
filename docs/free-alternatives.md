@@ -7,7 +7,7 @@ Claude Code ต้องใช้แพลน Pro ขึ้นไป (แพล�
 |---|---|---|---|
 | 0 · ไม่ใช้ LLM | Python + Obsidian + dashboard | lint · backtest · validate facts · Research Board · Ledger | ฟรี |
 | 1 · แชทธรรมดา | Gemini / ChatGPT / Claude บนเว็บ แพลนฟรี | ช่วยร่าง source note และ hypothesis แล้วเราวางไฟล์เอง | ฟรี (มีโควตา) |
-| 2 · agent ใน terminal | Antigravity CLI (`agy`) หรือ agent อื่นที่อ่าน `AGENTS.md` | อ่านและเขียนไฟล์ใน vault เอง ทำตาม skill ได้ | free tier มีโควตาจำกัด |
+| 2 · agent ใน terminal | Antigravity CLI (`agy`) หรือ agent อื่นที่อ่าน `AGENTS.md` | อ่านและเขียนไฟล์ใน vault เอง เรียก `/skill` ได้ | free tier มีโควตาจำกัด (Google AI Pro/Ultra ได้มากกว่า) |
 
 > **Gemini CLI แบบฟรีปิดแล้ว** ตั้งแต่ 18 มิ.ย. 2026 Google หยุดให้บริการ Gemini CLI สำหรับบัญชีฟรี (Gemini Code Assist
 > for individuals) และ Google AI Pro/Ultra ให้ย้ายไปใช้ Antigravity CLI แทน
@@ -57,17 +57,26 @@ agy -p "สรุปกติกาทองใน AGENTS.md เป็น 3 บ�
 
 ติดตั้งตามหน้าทางการที่ [antigravity.google](https://antigravity.google) แล้วเปิด terminal ใหม่ ตรวจด้วย `agy --version`
 
-**Skills:** agy ไม่เห็น skill ใน `.claude/skills/` (ทดสอบแล้ว) ให้สั่งด้วย path ของไฟล์ตรงๆ แทน
+**Skills:** agy อ่าน skill จาก `.agents/skills/` (ไม่อ่าน `.claude/skills/`) repo นี้มีให้แล้ว สั่งด้วยชื่อเดียวกับ Claude Code
 
-| Claude Code | สั่ง agy |
-|---|---|
-| `/find-paper novy-marx-2012` | `อ่าน .claude/skills/find-paper/SKILL.md แล้วทำตามกับ novy-marx-2012` |
-| `/ingest-paper <citekey>` | `อ่าน .claude/skills/ingest-paper/SKILL.md แล้วทำตามกับ <citekey> ต้นฉบับอยู่ที่ raw/pdf/<ไฟล์>.pdf` |
-| `/log-experiment H-001 12-7` | `อ่าน .claude/skills/log-experiment/SKILL.md แล้วทำตามกับ H-001 12-7 in_sample` (ข้อ 3 ให้หยุดรอ Reviewer ด้านล่าง) |
-| `/wiki-lint` | รัน `python scripts/wiki_lint.py` เอง |
+```bash
+agy -p "/wiki-lint"
+agy -p "/find-paper Griffin, Ji & Martin (2003) Momentum Investing and Business Cycle Risk"
+agy                       # แล้วพิมพ์ /ingest-paper <citekey> หรือ /log-experiment H-001 12-7 in_sample
+```
 
-**Reviewer:** เปิด session ใหม่แยกจาก session ที่รัน backtest (ให้ Reviewer ไม่เห็นบทสนทนาที่อยากให้ผลผ่าน) แล้วสั่ง
-`อ่าน .claude/agents/reviewer.md แล้วตรวจ experiments/E-xxx.md ตาม checklist ทุกข้อ`
+ทดสอบบนสำเนาของ repo เมื่อ 2026-10-25 (agy 1.4.7):
+- `/wiki-lint`: agy เปิด `.agents/skills/wiki-lint/SKILL.md` แล้วรัน lint ได้ `PASS`
+- `/find-paper` (Griffin-Ji-Martin 2003): ใช้ประมาณ 3 นาที ตรวจ Crossref และ OpenAlex แล้วเพิ่มแถวใน `reading-list.md` ·
+  DOI `10.1046/j.1540-6261.2003.00614.x`, JF 58(6) 2515–2547 ตรงกับ Crossref ที่เราตรวจซ้ำเอง · lint PASS
+- ยังไม่ได้ทดสอบ `/ingest-paper`, `/log-experiment` และ `/reviewer` กับ agy
+
+`.agents/skills/` สร้างจาก `.claude/skills/` ด้วย `python scripts/sync_skills.py` ถ้าแก้ skill ให้แก้ที่ `.claude/`
+แล้วรันสคริปต์นี้ (`--check` ใช้ตรวจว่ายังตรงกัน)
+
+**Reviewer:** Claude Code ใช้ subagent ส่วน agy ใช้ skill `reviewer` (สร้างจาก `.claude/agents/reviewer.md`)
+ควรเปิด session ใหม่แยกจาก session ที่รัน backtest เพื่อให้ Reviewer ไม่เห็นบทสนทนาที่อยากให้ผลผ่าน แล้วสั่ง
+`/reviewer experiments/E-xxx.md`
 
 **Hook:** ไม่มี hook ให้ รัน `python scripts/wiki_lint.py` เองหลัง agent เขียนไฟล์ และก่อน commit ทุกครั้ง
 
@@ -84,8 +93,8 @@ agent ที่อ่าน `AGENTS.md` (เช่น Codex CLI ซึ่งต�
 | Claude Code ทำให้ | ทำเองแทน |
 |---|---|
 | hook รัน lint หลังเขียนไฟล์ | `python scripts/wiki_lint.py` ก่อน commit |
-| subagent Reviewer แยก context | session ใหม่ + `.claude/agents/reviewer.md` |
-| `/skill` | สั่งด้วย path ของ `SKILL.md` |
+| subagent Reviewer แยก context | session ใหม่ + `/reviewer` |
+| `/skill` จาก `.claude/skills/` | agy ใช้ `/skill` จาก `.agents/skills/` |
 | `CLAUDE.md` ดึง `AGENTS.md` | agy อ่าน `AGENTS.md` เอง |
 
 > เนื้อหาเพื่อการศึกษา ไม่ใช่คำแนะนำการลงทุน
