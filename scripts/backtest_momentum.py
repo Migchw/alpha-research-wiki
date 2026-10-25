@@ -228,7 +228,7 @@ def render(meta: dict, stats: dict, ctx: dict) -> str:
 ## Config
 - Hypothesis: {meta['hypothesis']}
 - Signal: P[t-{meta['skip']}] / P[t-12] − 1 ณ สิ้นเดือน t ถือเดือน t+1 (lookback {meta['lookback']}, skip {meta['skip']} เดือน)
-- Universe: {ctx['universe']} รายชื่อปัจจุบัน {ctx['n_universe']} ตัว (`{UNIVERSE_REL}`) มีราคาใน yfinance {ctx['n_priced']} ตัว
+- Universe: {ctx['universe']} รายชื่อปัจจุบัน {ctx['n_universe']} ตัว (`{UNIVERSE_REL}`) มีราคาใน yfinance {ctx['n_priced']} ตัว{ctx['missing']}
 - ช่วงถือพอร์ต: {stats['first']} ถึง {stats['last']} ({stats['n_months']} เดือน · ข้าม {stats['skipped_months']} เดือนที่มีหุ้นน้อยกว่า {MIN_NAMES} ตัว)
 - จำนวนหุ้นต่อเดือน: min {stats['names_min']} · median {stats['names_median']} · max {stats['names_max']}
 - Portfolio: quintile equal-weight long Q5 / short Q1, rebalance รายเดือน
@@ -333,7 +333,8 @@ def main() -> int:
         "tags": ["experiment", "momentum"],
     }
     ctx = {"universe": hyp.get("universe", "SET100"), "n_universe": len(symbols),
-           "n_priced": daily.shape[1], "extreme": extreme, "forced_oos": forced_oos}
+           "n_priced": daily.shape[1], "extreme": extreme, "forced_oos": forced_oos,
+           "missing": "".join(f" (ไม่มี: {', '.join(m)})" for m in [sorted(set(symbols) - set(daily.columns))] if m)}
     note = render(meta, stats, ctx)
 
     summary = (f"{meta['id']} trial {trial_no} · {args.lookback} {args.sample} · sharpe {meta['sharpe']} · "
