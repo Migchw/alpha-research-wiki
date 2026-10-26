@@ -34,7 +34,7 @@
 |---|---|---|
 | Hong, Lim & Stein (2000), Bad News Travels Slowly: Size, Analyst Coverage, and the Profitability of Momentum Strategies | [10.1111/0022-1082.00206](https://doi.org/10.1111/0022-1082.00206) · JF 55(1) 265–295 | ✅ |
 | Da, Gurun & Warachka (2014), Frog in the Pan: Continuous Information and Momentum | [10.1093/rfs/hhu003](https://doi.org/10.1093/rfs/hhu003) · RFS 27(7) 2171–2218 | ✅ |
-| Chui, Titman & Wei (2010), Individualism and Momentum around the World | [10.1111/j.1540-6261.2009.01532.x](https://doi.org/10.1111/j.1540-6261.2009.01532.x) · JF 65(1) 361–392 · SSRN 685767 | ✅ 📄 [[chui-titman-wei-2010]] 📖 (abstract · **ยังห้ามอ้างเรื่องไทย/เอเชีย**) |
+| Chui, Titman & Wei (2010), Individualism and Momentum around the World | [10.1111/j.1540-6261.2009.01532.x](https://doi.org/10.1111/j.1540-6261.2009.01532.x) · JF 65(1) 361–392 · SSRN 685767 | ✅ 📄 [[chui-titman-wei-2010]] 📖 (manuscript SSRN 1150076 · มีผลของไทย) |
 
 ## 5. Residual momentum
 | Paper | ที่มา | สถานะ |

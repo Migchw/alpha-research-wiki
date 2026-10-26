@@ -20,4 +20,4 @@ created: 2026-10-24
 - [[novy-marx-2012]]: ผลมาจากช่วงกลาง (เดือนที่ 12 ถึง 7) มากกว่าช่วงล่าสุด ดู [[intermediate-horizon-momentum]] (MS p. 9–15)
 - [[chan-jegadeesh-lakonishok-1996]]: momentum ราคากับ momentum ของข่าวกำไรต่างทำนายผลได้ ไม่มีตัวไหนกลืนอีกตัว (working paper)
 - [[daniel-moskowitz-2016]]: momentum พังหลังตลาดขาลงเมื่อตลาดดีดกลับ เพราะ beta ของผู้แพ้สูง (working paper)
-- [[chui-titman-wei-2010]]: ขนาดของ momentum ต่างกันตามวัฒนธรรมของประเทศ (ระดับ abstract)
+- [[chui-titman-wei-2010]]: ใน 41 ประเทศ momentum แรงกว่าในประเทศที่ individualism สูง (สูงลบต่ำ 0.65% ต่อเดือน) · ไทย (Indv 20) ได้ 0.479% ต่อเดือน ไม่มีนัยสำคัญ (MS p. 16–17, 33)
