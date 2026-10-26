@@ -39,6 +39,7 @@ npm run dev        # เปิด http://localhost:3000 (สร้าง index �
 | Experiment Ledger `/ledger` | ทุก trial ของทุก hypothesis เรียงตาม Sharpe, t-stat, trial, annual return, max drawdown ได้ กรอง in-sample / out-of-sample ได้ |
 | คลังความรู้ `/library` | ตารางโน้ตทั้งหมด กรองตามประเภทและสถานะการตรวจ |
 | Graph View `/graph` | กราฟจาก `[[wikilink]]` จริงในโน้ต (แบบ Obsidian) |
+| Paper Feed `/feed` | paper ใหม่จาก [ML-Quant](https://www.ml-quant.com) (ค่าเริ่มต้นหัวข้อ Asset Pricing & Factors) ติดป้ายถ้ามีใน vault แล้ว · ปุ่มคัดลอกคำสั่ง `/find-paper` ไปวางใน agent |
 | `/read/<slug>` | อ่านโน้ตฉบับเต็ม หน้า experiment / hypothesis / paper มีกล่องอธิบายภาษาง่ายด้านบน (สร้างจาก frontmatter) |
 
 สีของประเภทโน้ต: hypothesis ส้ม · experiment ฟ้า · factor ม่วง · concept เขียว · paper เทา
@@ -51,6 +52,21 @@ npm run dev        # เปิด http://localhost:3000 (สร้าง index �
 - **ตัด market chart, earnings scorecard และ watchlist ออก** เพราะงานวิจัยนี้ไม่ได้ติดตามหุ้นรายตัว และสคริปต์เดิม
   ดึงข้อมูลจากเน็ตทุกครั้งที่ build ทำให้ build ช้าและพังได้เมื่อไม่มีเน็ต ราคาที่ใช้วิจัยอยู่ในขั้น backtest แล้ว
 - เพิ่ม 2 หน้า: Research Board และ Experiment Ledger
+
+## Paper Feed
+
+dashboard ไม่ดึงข้อมูลจากเน็ตเอง (build ต้องทำงานได้แม้ออฟไลน์) ให้ดึง feed ด้วยมือจาก root ของ repo:
+
+```bash
+python scripts/paper_feed.py --topic asset-pricing-factors --limit 20   # → dashboard/data/paper-feed.json (ไม่ commit)
+cd dashboard && npm run index
+```
+
+- หัวข้ออื่นดูได้ที่ https://www.ml-quant.com/api/v1/topics.json (เช่น `llms-text`, `portfolio-allocation`)
+- สคริปต์เว้น 1 วินาทีต่อ request และไม่ดึงหน้าที่มีอยู่แล้วซ้ำ
+- สรุปหนึ่งประโยคเป็นของ ML-Quant (CC BY 4.0 ลิงก์กลับทุกรายการ) **ยังไม่ได้ตรวจกับต้นฉบับ** ใช้หาไอเดียเท่านั้น
+- ปุ่มบนหน้า feed **ไม่เขียนไฟล์** แค่คัดลอก `/find-paper "<ชื่อ>" <ลิงก์>` ให้ไปวางใน Claude Code / agy
+  แล้ว `/find-paper` จะตรวจ metadata และเพิ่มลง `reading-list.md` เอง (dashboard เป็น read-only ตาม SPEC)
 
 ## ข้อควรรู้
 
