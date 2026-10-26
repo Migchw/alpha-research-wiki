@@ -49,7 +49,7 @@ created: 2026-10-24
 - Signal: ผลตอบแทนสะสม J เดือน · decile · พอร์ตแบบ overlapping (ถือพร้อมกัน K รุ่น) (p. 68)
 
 ## ใช้กับงานเราอย่างไร
-- hypothesis ที่เกี่ยวข้อง: H-001 (ยังไม่ได้ลงทะเบียน) (baseline ของ E-001)
+- hypothesis ที่เกี่ยวข้อง: [[H-001-intermediate-momentum-set]] (baseline ของ E-001)
 - concept ที่เกี่ยวข้อง: [[cross-sectional-momentum]]
 - **เชื่อมกับ EP5 / Module 8:** ตั้งแต่ปี 1993 ผู้เขียนก็นับว่าทดสอบไป 32 แบบ และปรับด้วย Bonferroni แล้ว (claim 4) ซึ่งเป็นเหตุผลเดียวกับการเก็บ `trial_no` ในทุก experiment
 

@@ -59,7 +59,7 @@ created: 2026-10-24
 - **ต้นทุน:** ไม่ได้หักในผลหลัก
 
 ## ใช้กับงานเราอย่างไร
-- hypothesis: H-001 (ยังไม่ได้ลงทะเบียน) signal 12-7 ของเราตรงกับ r12,7 ของ paper (6 เดือน, ข้ามช่วงล่าสุด)
+- hypothesis: [[H-001-intermediate-momentum-set]] signal 12-7 ของเราตรงกับ r12,7 ของ paper (6 เดือน, ข้ามช่วงล่าสุด)
 - concept: [[intermediate-horizon-momentum]], [[cross-sectional-momentum]]
 - **ต่างจาก backtest ของเรา:**
 
