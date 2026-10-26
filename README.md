@@ -19,6 +19,28 @@ python scripts/wiki_lint.py
 
 ต้องใช้ Python 3.10+ · Node.js 22.13+ (dashboard) · Git · agent: Claude Code (แพลน Pro ขึ้นไป) หรือ [ทางเลือกฟรี](docs/free-alternatives.md)
 
+## Checkpoint ระหว่างดูคลิป
+
+ในคลิปผู้สอนสร้าง vault จากโฟลเดอร์ว่างทีละขั้น Claude ตอบไม่เหมือนกันทุกครั้ง ถ้าของคุณออกมาไม่ตรงกับในคลิป
+ให้ clone repo นี้แล้วกระโดดไปที่จุดเดียวกับผู้สอน (ปุ่ม "Use this template" ไม่คัดลอก tag มาด้วย ต้องใช้ `git clone`)
+
+```bash
+git clone https://github.com/Migchw/alpha-research-wiki.git
+cd alpha-research-wiki
+git checkout step-2-papers        # เปลี่ยนเป็น checkpoint ที่ต้องการ
+```
+
+| Checkpoint | ตอน | มีอะไรแล้ว |
+|---|---|---|
+| `step-1-scaffold` | EP2 | AGENTS.md / CLAUDE.md, templates, `wiki_lint.py`, โฟลเดอร์ว่าง |
+| `step-2-papers` | EP3 | `/find-paper`, `/ingest-paper` และ paper 5 ชิ้นพร้อมบทความ |
+| `step-3-backtest` | EP4 | H-001 (pre-registered), `backtest_momentum.py` + test, notebook, E-001..E-003 รอ Reviewer |
+| `step-4-reviewer` | EP5 | Reviewer subagent, `/log-experiment`, `/wiki-lint`, lint hook |
+| `step-5-dashboard` | EP8 | ทุกอย่างใน `master` รวม dashboard และ pipeline ของ EP7 |
+
+checkpoint 1–4 อยู่บน branch `build-steps` เป็นไฟล์ชุดเดียวกับ `master` ที่เรียงตามลำดับในคลิป
+กลับมาตัวเต็มด้วย `git checkout master`
+
 ## Skills และ Reviewer
 
 เปิด `claude` (หรือ `agy`) ที่ root ของ repo แล้วพิมพ์คำสั่ง · ขั้นตอนเต็มอยู่ใน `.claude/skills/<ชื่อ>/SKILL.md`
