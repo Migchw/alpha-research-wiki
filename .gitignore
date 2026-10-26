@@ -1,0 +1,20 @@
+# ลิขสิทธิ์: ห้าม commit full-text / PDF ของ paper
+*.pdf
+raw/**/fulltext*
+raw/pdf/
+# ข้อมูลราคา: ดาวน์โหลดตอนรัน ห้าม commit
+data/
+.cache/
+*.csv
+*.parquet
+# Python / Node
+__pycache__/
+.venv/
+venv/
+node_modules/
+.next/
+dashboard/data/index*.json
+# Obsidian (เก็บเฉพาะ config ที่แชร์ได้)
+.obsidian/workspace*.json
+.obsidian/cache
+.env
