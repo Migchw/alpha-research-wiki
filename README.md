@@ -1,11 +1,15 @@
 # Alpha Research Wiki
 
-หน่วยความจำของกระบวนการวิจัย alpha: เก็บ paper, hypothesis, experiment และ factor เป็น Markdown ที่ย้อนตรวจได้
-ว่าทุกข้อสรุปมาจากหลักฐานไหน และลองอะไรไปแล้วกี่ครั้ง
+หน่วยความจำของกระบวนการวิจัย: เก็บสิ่งที่อ่านจาก paper วิจัย เอกสารบริษัท (56-1 One Report, 10-K, 10-Q) และคลิป
+เป็น Markdown ที่ย้อนตรวจได้ว่าทุกข้อสรุปมาจากเอกสารไหน หน้าไหน นาทีไหน · ชั้นของงาน quant (hypothesis, experiment, factor)
+บันทึกด้วยว่าลองอะไรไปแล้วกี่ครั้ง
+
+ในคลิปผู้สอนสร้าง vault แบบนี้**จากโฟลเดอร์ว่าง**ทีละขั้น repo นี้คือ**เฉลย**ที่ทำเสร็จแล้ว เปิดดูเทียบได้
+ตัวอย่างในคลิป: paper momentum 5 ชิ้น · DELTA (56-1 One Report 2025) · NFLX (10-K 2025, 10-Q 3Q2026, earnings interview) · H-001
 
 > Material ประกอบ Quant Bootcamp (QuantCU × QuantCorner) Module 11 — AI and LLM in the Research Process
 
-## เริ่มใช้งาน
+## เปิดดูเฉลย
 
 ```bash
 git clone https://github.com/Migchw/alpha-research-wiki.git
@@ -34,12 +38,12 @@ git checkout step-2-papers        # เปลี่ยนเป็น checkpoint
 |---|---|---|
 | `step-1-scaffold` | EP2 | AGENTS.md / CLAUDE.md, templates, `wiki_lint.py`, โฟลเดอร์ว่าง |
 | `step-2-papers` | EP3 | `/find-paper`, `/ingest-paper` และ paper 5 ชิ้นพร้อมบทความ |
-| `step-3-backtest` | EP4 | H-001 (pre-registered), `backtest_momentum.py` + test, notebook, E-001..E-003 รอ Reviewer |
-| `step-4-reviewer` | EP5 | Reviewer subagent, `/log-experiment`, `/wiki-lint`, lint hook |
-| `step-5-dashboard` | EP8 | ทุกอย่างใน `master` รวม dashboard และ pipeline ของ EP7 |
+| `step-3-backtest` | EP7 | H-001 (pre-registered), `backtest_momentum.py` + test, notebook, E-001..E-003 รอ Reviewer |
+| `step-4-reviewer` | EP7 | Reviewer subagent, `/log-experiment`, `/wiki-lint`, lint hook |
+| `step-5-dashboard` | EP8 | dashboard และ pipeline facts (ยังไม่มีเอกสารบริษัทของ EP4–5) |
 
-checkpoint 1–4 อยู่บน branch `build-steps` เป็นไฟล์ชุดเดียวกับ `master` ที่เรียงตามลำดับในคลิป
-กลับมาตัวเต็มด้วย `git checkout master`
+checkpoint 1–4 อยู่บน branch `build-steps` เป็นไฟล์ชุดเดียวกับ `master` ที่เรียงตามลำดับเดิม
+เอกสารบริษัท (EP4) · `/ingest-source` · `/ask-wiki` (EP5) อยู่ใน `master` · กลับมาตัวเต็มด้วย `git checkout master`
 
 ## Skills และ Reviewer
 
@@ -49,6 +53,8 @@ checkpoint 1–4 อยู่บน branch `build-steps` เป็นไฟล�
 |---|---|
 | `/find-paper <ชื่อ หรือ DOI>` | ตรวจว่า paper มีจริงกับ Crossref/OpenAlex หาฉบับที่อ่านฟรีได้ แล้วบันทึกใน `reading-list.md` |
 | `/ingest-paper <citekey>` | อ่านต้นฉบับใน `raw/pdf/` แล้วเขียน source note (claim + เลขหน้า) และบทความอธิบาย |
+| `/ingest-source <source-id>` | อ่าน 56-1 / 10-K / 10-Q / transcript ใน `raw/sources/` แล้วเขียน `sources/<id>.md` และอัปเดต `companies/<TICKER>.md` |
+| `/ask-wiki <คำถาม>` | ตอบจาก vault เท่านั้น ทุกประโยคมีที่มา ถ้าไม่มีให้บอกว่า "vault ยังไม่มี" แล้วเสนอเก็บคำตอบเป็นบทความ |
 | `/log-experiment <H-xxx> <12-1\|12-7> [sample]` | รัน backtest เป็น trial ใหม่ → Reviewer → ตัดสินตาม kill criteria (ถามก่อนเปลี่ยน status) |
 | `/wiki-lint` | ตรวจ vault ด้วย `scripts/wiki_lint.py` |
 | Reviewer | Claude Code: subagent `.claude/agents/reviewer.md` · agent อื่น: `/reviewer experiments/E-xxx.md` |
@@ -68,17 +74,19 @@ Research Board · Experiment Ledger · Graph · บทความ อ่าน�
 
 ## เริ่ม Hands-on project ของตัวเอง
 
-กด **Use this template** แล้วทำตาม [docs/your-project.md](docs/your-project.md) (มีการบ้าน EP8: ingest 1 paper + register 1 hypothesis)
+vault ที่สร้างตามคลิปคือ vault ของคุณแล้ว · ถ้าอยากเริ่มจากเฉลย กด **Use this template** · ทำตาม [docs/your-project.md](docs/your-project.md)
+(การบ้าน EP8: ingest 1 เอกสาร + ถาม vault 1 คำถาม) · dashboard ใช้กับ vault ไหนก็ได้: คัดลอก `dashboard/` ไปวาง หรือตั้ง `WIKI_VAULT_PATH`
 
 ## Research loop
 
 ```
-paper → hypothesis (pre-register) → experiment (1 รัน = 1 trial) → Reviewer gate → factor | graveyard
+เอกสาร (paper · 56-1 · 10-K · คลิป) → source note + ที่มา → company / concept → /ask-wiki → articles/
+paper → hypothesis (pre-register) → experiment (1 รัน = 1 trial) → Reviewer gate → factor | graveyard   (งาน quant)
 ```
 
 ตัวอย่างที่ใช้เดินเรื่อง: [H-001 Intermediate momentum ใน SET100](hypotheses/H-001-intermediate-momentum-set.md)
 
-## Backtest (EP4)
+## Backtest (EP7)
 
 ```bash
 python scripts/test_backtest_momentum.py                                 # ตรวจ signal window ด้วยข้อมูลสังเคราะห์
@@ -94,7 +102,19 @@ python scripts/backtest_momentum.py --hypothesis H-001 --lookback 12-7   # ร�
 - รันบน Colab: [เปิดใน Colab](https://colab.research.google.com/github/Migchw/alpha-research-wiki/blob/master/notebooks/backtest_momentum.ipynb)
   ([`notebooks/backtest_momentum.ipynb`](notebooks/backtest_momentum.ipynb))
 
-## เอกสาร → facts (EP7)
+## เอกสารบริษัท (EP4)
+
+```bash
+# วางต้นฉบับใน raw/sources/ (gitignored) แล้วแปลงเป็นข้อความที่มีป้ายที่มา
+python scripts/source_to_text.py raw/sources/delta-56-1-2025.pdf     # === pdf page N ===
+python scripts/source_to_text.py raw/sources/nflx-10k-2025.htm       # === section: Item 7 ... ===
+```
+
+- ต้นฉบับ: 56-1 จากเว็บ IR / market.sec.or.th · 10-K, 10-Q จาก SEC EDGAR · คลิปที่ไม่มีคำบรรยาย ถอดเสียงในเครื่อง (faster-whisper)
+- `published` ใน source note คือวันที่เอกสารเผยแพร่ ไม่ใช่วันสิ้นงวด (กัน look-ahead)
+- ข้อมูลที่ขัดกัน (เช่น 56-1 ของ DELTA พิมพ์ยอดขาย 198,154 ในตาราง แต่ 198,514 ในย่อหน้า) บันทึกทั้งคู่ใน `companies/`
+
+## ตัวเลขจากเอกสาร → facts (EP4)
 
 ```bash
 python scripts/extract_pdf.py --name ap-2026-q2 --url https://ap.listedcompany.com/misc/MDNA/20260813-ap-mdna-2q2026-en.pdf --sha256 bac2ddd555a8a19351c4cabe0702c2f205fe355cf1bc1f11685be00d0b749f7a
@@ -116,7 +136,7 @@ vault เป็น Markdown + YAML ธรรมดา ไม่ผูกกั�
 
 ## ข้อควรรู้
 
-- ห้าม commit PDF หรือ full-text ของ paper และไฟล์ราคา (มีใน `.gitignore` แล้ว)
+- ห้าม commit PDF หรือ full-text ของ paper / filing / transcript และไฟล์ราคา (มีใน `.gitignore` แล้ว)
 - เนื้อหาเพื่อการศึกษา ไม่ใช่คำแนะนำการลงทุน
 
 - License: [MIT](LICENSE)

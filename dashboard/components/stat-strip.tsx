@@ -11,7 +11,7 @@ export type Stat = { label: string; value: number; hint: string; tone?: 'default
 export function StatStrip({ stats }: { stats: Stat[] }) {
   const reduced = useReducedMotion();
   return (
-    <SpotlightCard className="grid grid-cols-2 divide-x divide-border xl:grid-cols-4" aria-label="สถิติ Wiki">
+    <SpotlightCard className={`grid grid-cols-2 divide-x divide-border ${stats.length > 4 ? "xl:grid-cols-5" : "xl:grid-cols-4"}`} aria-label="สถิติ Wiki">
       {stats.map((stat) => (
         <div key={stat.label} className="px-6 py-5 first:pl-6">
           <p className="text-base text-muted-foreground">{stat.label}</p>

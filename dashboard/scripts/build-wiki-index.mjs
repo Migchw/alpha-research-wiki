@@ -77,6 +77,8 @@ function numberOrNull(value) {
 function verificationOf(kind, meta) {
   if (kind === 'paper') return ['fulltext', 'working_paper'].includes(meta.verified_against) ? 'verified' : 'pending';
   if (kind === 'experiment') return meta.reviewer_verdict || 'pending';
+  // ถอดเสียงด้วยเครื่อง ต้องเทียบกับ filing ก่อน จึงยังไม่นับว่าตรวจแล้ว
+  if (kind === 'source') return tagList(meta.tags).includes('machine-transcript') ? 'pending' : 'verified';
   return '';
 }
 
@@ -112,9 +114,11 @@ async function singleDocument(relativePath, slug, title) {
   return { kind: 'schema', name: path.basename(relativePath, '.md'), slug, title, date: meta.updated || '', status: meta.status || 'active', verification: '', confidence: '', tags: [], group: '', brief: '', meta, markdown, path: relativePath };
 }
 
-const [articles, papers, concepts, hypotheses, experiments, factors, agents, readme, readingList] = await Promise.all([
+const [articles, papers, sources, companies, concepts, hypotheses, experiments, factors, agents, readme, readingList] = await Promise.all([
   markdownFiles('articles', 'article'),
   markdownFiles('papers', 'paper'),
+  markdownFiles('sources', 'source'),
+  markdownFiles('companies', 'company'),
   markdownFiles('concepts', 'concept'),
   markdownFiles('hypotheses', 'hypothesis'),
   markdownFiles('experiments', 'experiment'),
@@ -124,7 +128,7 @@ const [articles, papers, concepts, hypotheses, experiments, factors, agents, rea
   singleDocument('reading-list.md', 'reading-list', 'Reading list'),
 ]);
 
-const notes = [...articles, ...hypotheses, ...experiments, ...factors, ...papers, ...concepts];
+const notes = [...articles, ...companies, ...sources, ...hypotheses, ...experiments, ...factors, ...papers, ...concepts];
 const allDocuments = [...notes, agents, readme, readingList];
 const documentLookup = new Map();
 for (const document of allDocuments) {
@@ -312,6 +316,8 @@ const index = {
   stats: {
     articles: count('article'),
     papers: count('paper'),
+    sources: count('source'),
+    companies: count('company'),
     concepts: count('concept'),
     hypotheses: count('hypothesis'),
     experiments: count('experiment'),
@@ -332,4 +338,4 @@ if (await stat(assets).catch(() => null)) {
 }
 await writeFile(path.join(projectRoot, 'data', 'wiki-index.json'), `${JSON.stringify(index, null, 2)}\n`, 'utf8');
 await writeFile(path.join(projectRoot, 'data', 'search-index.json'), `${JSON.stringify({ chunks: searchChunks })}\n`, 'utf8');
-console.log(`Indexed ${papers.length} papers, ${hypotheses.length} hypotheses, ${experiments.length} experiments and ${documents.length} readable documents from ${vaultRoot}`);
+console.log(`Indexed ${papers.length} papers, ${sources.length} sources, ${companies.length} companies, ${hypotheses.length} hypotheses, ${experiments.length} experiments and ${documents.length} readable documents from ${vaultRoot}`);

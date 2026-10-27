@@ -1,7 +1,8 @@
-"""Deterministic lint for the Alpha Research Wiki.
+"""Deterministic lint for the research wiki.
 
 Checks frontmatter against the schema in AGENTS.md, broken wikilinks,
-pre-registration rules and graveyard rules. Exit code 1 if any error.
+pre-registration rules and graveyard rules. Covers papers, company sources
+(56-1, 10-K, 10-Q, transcripts) and company pages as well as the quant layer. Exit code 1 if any error.
 
 Usage: python scripts/wiki_lint.py [--vault PATH]
 """
@@ -17,6 +18,8 @@ import yaml
 FOLDER_TYPE = {
     "articles": "article",
     "papers": "paper",
+    "sources": "source",
+    "companies": "company",
     "concepts": "concept",
     "hypotheses": "hypothesis",
     "experiments": "experiment",
@@ -26,6 +29,8 @@ FOLDER_TYPE = {
 REQUIRED = {
     "article": ["title", "about", "basis", "status"],
     "paper": ["citekey", "title", "authors", "year", "status"],
+    "source": ["id", "company", "doc_type", "title", "period", "published", "url", "status"],
+    "company": ["ticker", "name", "exchange"],
     "concept": ["title"],
     "hypothesis": ["id", "status", "source_papers", "signal", "universe", "in_sample",
                    "out_of_sample", "expected_sign", "kill_criteria"],
@@ -39,6 +44,8 @@ ENUMS = {
     ("paper", "status"): {"queued", "ingested", "reviewed"},
     ("paper", "verified_against"): {"fulltext", "working_paper", "abstract", ""},
     ("article", "basis"): {"fulltext", "working_paper", "abstract", "vault"},
+    ("source", "status"): {"queued", "ingested", "reviewed"},
+    ("source", "doc_type"): {"56-1", "10-K", "10-Q", "transcript", "video", "other"},
     ("hypothesis", "status"): {"idea", "preregistered", "testing", "promoted", "rejected"},
     ("hypothesis", "expected_sign"): {"positive", "negative", ""},
     ("experiment", "sample"): {"in_sample", "out_of_sample"},

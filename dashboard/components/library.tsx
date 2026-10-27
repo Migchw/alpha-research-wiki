@@ -13,6 +13,8 @@ import { kindLabel, type DocSummary } from '@/lib/wiki';
 const tabs = [
   { value: 'all', label: 'ทั้งหมด' },
   { value: 'article', label: 'Articles' },
+  { value: 'company', label: 'Companies' },
+  { value: 'source', label: 'Sources' },
   { value: 'hypothesis', label: 'Hypotheses' },
   { value: 'experiment', label: 'Experiments' },
   { value: 'paper', label: 'Papers' },
@@ -26,7 +28,7 @@ const filters = [
   { value: 'verified', label: 'verified / pass' },
 ] as const;
 
-const kindOrder: Record<string, number> = { article: 0, hypothesis: 1, experiment: 2, factor: 3, paper: 4, concept: 5 };
+const kindOrder: Record<string, number> = { article: 0, company: 1, source: 2, hypothesis: 3, experiment: 4, factor: 5, paper: 6, concept: 7 };
 
 export default function Library({ docs }: { docs: DocSummary[] }) {
   const notes = useMemo(() => docs.filter((doc) => doc.kind !== 'schema'), [docs]);

@@ -2,6 +2,9 @@
 *.pdf
 raw/**/fulltext*
 raw/pdf/
+# ข้อความเต็มของ filing / transcript / ไฟล์เสียง
+raw/sources/
+*.mp3
 # ข้อมูลราคา: ดาวน์โหลดตอนรัน ห้าม commit
 data/
 .cache/

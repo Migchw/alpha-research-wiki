@@ -1,4 +1,4 @@
-export type DocKind = 'article' | 'paper' | 'concept' | 'hypothesis' | 'experiment' | 'factor' | 'schema';
+export type DocKind = 'article' | 'paper' | 'source' | 'company' | 'concept' | 'hypothesis' | 'experiment' | 'factor' | 'schema';
 
 export type WikiDoc = {
   slug: string; kind: DocKind; title: string; date: string; status: string;
@@ -32,7 +32,7 @@ export type PaperFeed = { fetchedAt: string; topic: string; credit: string; item
 
 export type WikiIndex = {
   generatedAt: string; vaultName: string;
-  stats: { articles: number; papers: number; concepts: number; hypotheses: number; experiments: number; factors: number; pendingReview: number };
+  stats: { articles: number; papers: number; sources: number; companies: number; concepts: number; hypotheses: number; experiments: number; factors: number; pendingReview: number };
   research: { articles: ArticleRow[]; hypotheses: HypothesisRow[]; experiments: ExperimentRow[] };
   documents: WikiDoc[];
   graph: import('@/components/knowledge-graph').WikiGraph;
@@ -40,7 +40,7 @@ export type WikiIndex = {
 };
 
 export const kindLabel: Record<string, string> = {
-  article: 'ARTICLE', paper: 'PAPER', concept: 'CONCEPT', hypothesis: 'HYPOTHESIS', experiment: 'EXPERIMENT', factor: 'FACTOR', schema: 'SYSTEM',
+  article: 'ARTICLE', paper: 'PAPER', source: 'SOURCE', company: 'COMPANY', concept: 'CONCEPT', hypothesis: 'HYPOTHESIS', experiment: 'EXPERIMENT', factor: 'FACTOR', schema: 'SYSTEM',
 };
 
 export function dateLabel(date: string) {

@@ -29,9 +29,10 @@ export default function Overview({ vaultName, generatedAt, stats, hypotheses, ex
 
       <StatStrip
         stats={[
-          { label: 'Hypotheses', value: stats.hypotheses, hint: 'สมมติฐานทั้งหมด รวม graveyard' },
-          { label: 'Experiments', value: stats.experiments, hint: 'ทุกการรัน = 1 trial' },
           { label: 'Papers', value: stats.papers, hint: 'source note ของงานวิจัย' },
+          { label: 'Sources', value: stats.sources, hint: '56-1 · 10-K · 10-Q · transcript' },
+          { label: 'Companies', value: stats.companies, hint: 'หน้าบริษัทที่รวมหลาย source' },
+          { label: 'Experiments', value: stats.experiments, hint: 'ทุกการรัน = 1 trial' },
           { label: 'รอ Reviewer', value: stats.pendingReview, hint: 'experiment ที่ verdict ยัง pending', tone: 'pending' },
         ]}
       />

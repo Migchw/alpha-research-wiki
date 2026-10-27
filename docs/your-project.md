@@ -1,5 +1,7 @@
 # เริ่ม wiki ของ Hands-on project + การบ้าน EP8
 
+> vault ที่สร้างตามคลิปตั้งแต่ EP2 ใช้ต่อได้เลย ส่วนข้อ 1 ด้านล่างสำหรับคนที่อยากเริ่มจากเฉลย
+
 ## 1. สร้าง repo ของตัวเอง
 
 กด **Use this template** บนหน้า GitHub ของ repo นี้ (หรือ clone แล้วเปลี่ยน remote) ตั้งเป็น private ได้
@@ -45,30 +47,30 @@ npm run dev        # http://localhost:3000 · แก้โน้ตแล้ว�
 - **Experiment Ledger** `/ledger`: ทุก trial พร้อม Sharpe, t-stat และ verdict
 - **Graph** `/graph`: ดูว่า hypothesis ยึดกับ paper และ concept ไหน
 
-## การบ้าน EP8: ingest 1 paper + register 1 hypothesis
+## การบ้าน EP8: ingest 1 เอกสาร + ถาม vault 1 คำถาม
 
-ใช้หัวข้อ Hands-on project ของตัวเอง ไม่ต้องเป็น momentum
+ใช้ vault ที่สร้างตามคลิป (หรือ repo จาก Use this template) และหัวข้อของตัวเอง ไม่ต้องเป็น momentum
 
-1. **เลือก paper 1 ชิ้น** ที่เกี่ยวกับ project (หาไอเดียได้จาก [ML-Quant](https://www.ml-quant.com) ที่รวม paper ใหม่ด้าน quant
-   ทุกสัปดาห์แยกตามหัวข้อ หรือจาก `reading-list.md`) หา DOI และฉบับที่อ่านได้ฟรี (`/find-paper` หรือทำตาม
-   `.claude/skills/find-paper/SKILL.md`) วาง PDF ไว้ที่ `raw/pdf/` (ไม่ถูก commit)
-2. **ingest** ด้วย `/ingest-paper <citekey>` หรือเขียนเองจาก `templates/Paper.md`
-   - `status: ingested` · มี claim อย่างน้อย 5 ข้อ แยก fact / interpretation / open question
-   - ทุก claim มีเลขหน้า และ **คุณเปิดต้นฉบับตรวจเองแล้วทุกข้อ**
-3. **register hypothesis 1 ตัว** จาก `templates/Hypothesis.md` ตั้ง `status: preregistered` และกรอกให้ครบ:
-   `source_papers` (ลิงก์ paper ข้อ 2), `signal`, `universe`, `in_sample`, `out_of_sample`, `expected_sign`
-   และ `kill_criteria` ที่เป็นตัวเลข เช่น "OOS t-stat < 1.5"
-   เขียนส่วน "ทำไมถึงคิดว่าน่าจะใช้ได้ (กลไก)" ด้วยคำของตัวเอง 3–5 บรรทัด
+1. **เลือกเอกสาร 1 ชิ้น** อย่างใดอย่างหนึ่ง
+   - paper ที่เกี่ยวกับ project (หาไอเดียได้จาก [ML-Quant](https://www.ml-quant.com) หรือ `reading-list.md`)
+     ตรวจ DOI และหาฉบับฟรีด้วย `/find-paper` แล้ววาง PDF ที่ `raw/pdf/`
+   - เอกสารบริษัทที่สนใจ: 56-1 One Report (เว็บ IR หรือ market.sec.or.th) · 10-K / 10-Q (SEC EDGAR)
+     วางที่ `raw/sources/<source-id>.<pdf|htm>`
+2. **ingest** ด้วย `/ingest-paper <citekey>` หรือ `/ingest-source <source-id>`
+   - `status: ingested` · source ต้องมี `published` (วันที่เผยแพร่ ไม่ใช่วันสิ้นงวด)
+   - claim อย่างน้อย 5 ข้อ แยก fact / interpretation (ผู้เขียนหรือบริษัท) / interpretation (เรา) / open question
+   - ทุก claim มีที่มา (หน้า · Item · `[mm:ss]`) และ **คุณเปิดต้นฉบับตรวจเองอย่างน้อย 3 ข้อ**
+3. **ถาม vault 1 คำถาม** ด้วย `/ask-wiki <คำถาม>` เกี่ยวกับเอกสารข้อ 1 แล้วเก็บคำตอบเป็น `articles/<slug>.md`
+   (`basis: vault`, `status: draft`) ทุกประโยคมีลิงก์ source และมีหัวข้อ "vault ยังไม่มี"
 4. **ตรวจ** `python scripts/wiki_lint.py` ต้องได้ `PASS` แล้ว commit
 
-**ยังไม่ต้องรัน backtest** `scripts/backtest_momentum.py` ทำได้แค่ momentum บน SET100 ของ H-001
-project ของคุณต้องเขียนสคริปต์ทดสอบเอง และต้องให้สคริปต์นั้นเขียนผลลง `experiments/` ตาม `templates/Experiment.md`
+**งานเสริมสำหรับสาย quant:** register hypothesis 1 ตัวจาก `templates/Hypothesis.md` (`status: preregistered`
+พร้อม `kill_criteria` ที่เป็นตัวเลข) · ยังไม่ต้องรัน backtest เพราะ `scripts/backtest_momentum.py` ทำได้แค่ H-001
 
 ### เช็คก่อนส่ง
 - [ ] `python scripts/wiki_lint.py` → `PASS`
-- [ ] paper มี DOI ที่ตรวจกับ Crossref แล้ว และไม่มี PDF ใน `git ls-files`
-- [ ] hypothesis ขึ้นในคอลัมน์ preregistered ของ Research Board
-- [ ] kill criteria เขียนก่อนเห็นผลใดๆ และจะไม่แก้หลังจากนี้
+- [ ] ไม่มี PDF หรือข้อความเต็มใน `git ls-files` (paper: DOI ตรวจกับ Crossref แล้ว)
+- [ ] บทความจาก `/ask-wiki` ทุกประโยคชี้กลับไปที่ source
 
 ไม่มี Claude แบบเสียเงิน: ดู [ทางเลือกฟรี](free-alternatives.md)
 

@@ -17,6 +17,8 @@ type View = { x: number; y: number; k: number };
 
 export const graphKinds = [
   { kind: 'article', label: 'Article', color: 'var(--foreground)' },
+  { kind: 'company', label: 'Company', color: 'var(--chart-3)' },
+  { kind: 'source', label: 'Source', color: 'var(--chart-5)' },
   { kind: 'hypothesis', label: 'Hypothesis', color: 'var(--primary)' },
   { kind: 'experiment', label: 'Experiment', color: 'var(--thesis)' },
   { kind: 'factor', label: 'Factor', color: 'var(--chart-4)' },
