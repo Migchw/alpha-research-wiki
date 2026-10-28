@@ -2,7 +2,7 @@
 type: source
 id: company-doctype-period     # เช่น delta-56-1-2025 · nflx-10k-2025
 company: "[[TICKER]]"
-doc_type: 56-1               # 56-1 | 10-K | 10-Q | MD&A (คำอธิบายผลประกอบการรายไตรมาสที่ส่ง ตลท.) | transcript | video | other
+doc_type: 56-1               # 56-1 | 10-K | 10-Q | MD&A (คำอธิบายผลประกอบการรายไตรมาสที่ส่ง ตลท.) | shareholder-letter (จดหมายรายไตรมาสถึงผู้ถือหุ้น) | transcript | video | other
 title: ""
 period: ""                   # งวดที่เอกสารพูดถึง เช่น FY2025 · 3Q2026
 published:                   # วันที่เอกสารเผยแพร่ (ไม่ใช่วันสิ้นงวด) ใช้กัน look-ahead

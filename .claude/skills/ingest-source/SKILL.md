@@ -13,6 +13,8 @@ argument-hint: <source-id> เช่น delta-56-1-2025 | nflx-10k-2025 | nflx-e
 ## 0. เตรียมต้นฉบับ
 - ต้นฉบับอยู่ใน `raw/sources/<source-id>.<pdf|htm|txt|vtt>` (gitignored) ถ้าไม่มี ให้บอกผู้ใช้ว่าต้องโหลดจากไหน แล้วหยุด
   - 10-K / 10-Q: SEC EDGAR (`sec.gov/cgi-bin/browse-edgar`) · 56-1 One Report: เว็บนักลงทุนสัมพันธ์ของบริษัท หรือ SEC ไทย
+  - shareholder letter (`doc_type: shareholder-letter`): เว็บ IR ของบริษัท เช่น Netflix
+    `s22.q4cdn.com/959853165/files/doc_financials/<ปี>/q<n>/FINAL-Q<n>-<yy>-Shareholder-Letter.pdf` · ตารางสรุปรายไตรมาสในจดหมายผ่าน validator ตามข้อ 0.5
   - คลิป: ถ้ามีคำบรรยายใช้ไฟล์ .vtt ถ้าไม่มีให้ถอดเสียงในเครื่อง (เช่น faster-whisper) แล้วบันทึกว่าเป็น machine transcript
 - แปลงเป็นข้อความ: `python scripts/source_to_text.py raw/sources/<ไฟล์>` ได้ `<source-id>.source.txt` ที่มี locator
   `=== pdf page N ===` · `=== section: Item 7 ... ===` · `[mm:ss]` และ sha256 ของต้นฉบับ

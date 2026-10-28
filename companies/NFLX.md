@@ -25,6 +25,9 @@ created: 2026-10-27
 | โฆษณา | 10-Q: รายได้โฆษณาเพิ่ม $256 ล้านในไตรมาส · ผู้บริหาร: โตเกิน 80% ในปีนี้ แต่ช้ากว่าเป้า | [[nflx-10q-2026q3]] Item 2 · [[nflx-earnings-interview-2026q3]] [30:21]–[30:29] |
 | ปี 2027 (บริษัทพูด) | ยังไม่ให้ guidance · เป้าหมายรายได้โตสองหลักและ margin ขยาย | [[nflx-earnings-interview-2026q3]] [15:25]–[15:35] |
 | ค่าเงิน | รายได้ 56% ไม่ใช่ USD | [[nflx-10k-2025]] Item 7A |
+| forecast (บริษัท) | ไตรมาส 4/2026 margin 26.0% (รวมผลลดพนักงาน ~120 bps) · ปี 2026 รายได้ $51.1B margin 31.5% | [[nflx-letter-2026q3]] p. 1–2 |
+| โฆษณา (ระดับเงิน) | ปี 2026 คาด ~$2.7B จากเดิม ~$3B | [[nflx-letter-2026q3]] p. 2 |
+| รายภูมิภาค 3Q26 | UCAN $5,628 · EMEA $4,107 · LATAM $1,603 · APAC $1,537 ล้าน | [[nflx-letter-2026q3]] p. 6 |
 
 ## เอกสารพูดไม่ตรงกัน
 - **ตัวชี้วัดสมาชิก:** ผู้บริหารพูดว่า member growth เป็นตัวขับรายได้ ([[nflx-earnings-interview-2026q3]] [14:12]) แต่ filing ไม่รายงานจำนวนสมาชิกแล้ว ([[nflx-10k-2025]] Item 7 fn. 1) → ตรวจด้วยตัวเลขทางการไม่ได้
@@ -38,3 +41,4 @@ created: 2026-10-27
 - [[nflx-10k-2025]] (เผยแพร่ 2026-01-23) · บทความ [[nflx-10k-2025-explained]]
 - [[nflx-10q-2026q3]] (เผยแพร่ 2026-10-21) · บทความ [[nflx-10q-2026q3-explained]]
 - [[nflx-earnings-interview-2026q3]] (ไลฟ์ 2026-10-20 · machine transcript) · บทความ [[nflx-earnings-interview-2026q3-explained]]
+- [[nflx-letter-2026q3]] (เผยแพร่ 2026-10-20 · fact pack `facts/nflx-2026-q3-letter.json`) · บทความ [[nflx-letter-2026q3-explained]]

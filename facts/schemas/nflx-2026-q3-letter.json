@@ -1,0 +1,248 @@
+{
+ "filing": "SEC:NFLX:2026:Q3 shareholder letter (8-K Ex.99.1)",
+ "units": [
+  "USD_m",
+  "percent",
+  "USD"
+ ],
+ "expected": {
+  "revenue": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026",
+    "4Q2026F"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "operating_income": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026",
+    "4Q2026F"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "operating_margin": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026",
+    "4Q2026F"
+   ],
+   [
+    "consolidated"
+   ],
+   "percent"
+  ],
+  "net_income": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026",
+    "4Q2026F"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "diluted_eps": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026",
+    "4Q2026F"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD"
+  ],
+  "operating_cash_flow": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "free_cash_flow": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "revenue_ucan": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "revenue_emea": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "revenue_latam": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ],
+  "revenue_apac": [
+   [
+    "3Q2025",
+    "4Q2025",
+    "1Q2026",
+    "2Q2026",
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "USD_m"
+  ]
+ },
+ "sums": [
+  [
+   "revenue = 4 regions (3Q2025)",
+   "revenue|3Q2025|consolidated",
+   [
+    "revenue_ucan|3Q2025|consolidated",
+    "revenue_emea|3Q2025|consolidated",
+    "revenue_latam|3Q2025|consolidated",
+    "revenue_apac|3Q2025|consolidated"
+   ]
+  ],
+  [
+   "revenue = 4 regions (4Q2025)",
+   "revenue|4Q2025|consolidated",
+   [
+    "revenue_ucan|4Q2025|consolidated",
+    "revenue_emea|4Q2025|consolidated",
+    "revenue_latam|4Q2025|consolidated",
+    "revenue_apac|4Q2025|consolidated"
+   ]
+  ],
+  [
+   "revenue = 4 regions (1Q2026)",
+   "revenue|1Q2026|consolidated",
+   [
+    "revenue_ucan|1Q2026|consolidated",
+    "revenue_emea|1Q2026|consolidated",
+    "revenue_latam|1Q2026|consolidated",
+    "revenue_apac|1Q2026|consolidated"
+   ]
+  ],
+  [
+   "revenue = 4 regions (2Q2026)",
+   "revenue|2Q2026|consolidated",
+   [
+    "revenue_ucan|2Q2026|consolidated",
+    "revenue_emea|2Q2026|consolidated",
+    "revenue_latam|2Q2026|consolidated",
+    "revenue_apac|2Q2026|consolidated"
+   ]
+  ],
+  [
+   "revenue = 4 regions (3Q2026)",
+   "revenue|3Q2026|consolidated",
+   [
+    "revenue_ucan|3Q2026|consolidated",
+    "revenue_emea|3Q2026|consolidated",
+    "revenue_latam|3Q2026|consolidated",
+    "revenue_apac|3Q2026|consolidated"
+   ]
+  ]
+ ],
+ "ratios": [
+  [
+   "operating_margin 3Q2025",
+   "operating_margin|3Q2025|consolidated",
+   "operating_income|3Q2025|consolidated",
+   "revenue|3Q2025|consolidated"
+  ],
+  [
+   "operating_margin 4Q2025",
+   "operating_margin|4Q2025|consolidated",
+   "operating_income|4Q2025|consolidated",
+   "revenue|4Q2025|consolidated"
+  ],
+  [
+   "operating_margin 1Q2026",
+   "operating_margin|1Q2026|consolidated",
+   "operating_income|1Q2026|consolidated",
+   "revenue|1Q2026|consolidated"
+  ],
+  [
+   "operating_margin 2Q2026",
+   "operating_margin|2Q2026|consolidated",
+   "operating_income|2Q2026|consolidated",
+   "revenue|2Q2026|consolidated"
+  ],
+  [
+   "operating_margin 3Q2026",
+   "operating_margin|3Q2026|consolidated",
+   "operating_income|3Q2026|consolidated",
+   "revenue|3Q2026|consolidated"
+  ],
+  [
+   "operating_margin 4Q2026F",
+   "operating_margin|4Q2026F|consolidated",
+   "operating_income|4Q2026F|consolidated",
+   "revenue|4Q2026F|consolidated"
+  ]
+ ]
+}
