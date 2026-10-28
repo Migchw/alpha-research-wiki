@@ -1,6 +1,6 @@
 ---
 type: article
-title: "DELTA ปี 2025: ยอดขายโต 20% เพราะ data center ขณะที่ธุรกิจ EV หดลงหนึ่งในสี่"
+title: "DELTA ปี 2025: ยอดขายโต 20% จากกลุ่ม Power Electronics ขณะที่ธุรกิจ EV หดลงหนึ่งในสี่"
 about: ["[[delta-56-1-2025]]", "[[DELTA]]"]
 basis: fulltext
 read_min: 12
@@ -9,7 +9,7 @@ tags: [article, delta, source-explainer]
 created: 2026-10-28
 ---
 
-# DELTA ปี 2025: ยอดขายโต 20% เพราะ data center ขณะที่ธุรกิจ EV หดลงหนึ่งในสี่
+# DELTA ปี 2025: ยอดขายโต 20% จากกลุ่ม Power Electronics ขณะที่ธุรกิจ EV หดลงหนึ่งในสี่
 
 ## สรุปสั้นก่อนอ่าน
 
