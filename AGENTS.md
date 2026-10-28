@@ -27,7 +27,7 @@ vault นี้คือ **หน่วยความจำของกระ�
 | โฟลเดอร์ | เก็บอะไร |
 |---|---|
 | `raw/` | metadata ของแหล่งข้อมูล ลิงก์ และโน้ตดิบของเรา |
-| `articles/` | บทความอ่านเข้าใจสำหรับคนทั่วไป: อธิบาย paper ทั้งเรื่อง และรายงานงานวิจัยของเรา (`type: article`) |
+| `articles/` | บทความอ่านเข้าใจสำหรับคนทั่วไป: อธิบาย paper หรือเอกสารบริษัททั้งชิ้น · รายงานงานวิจัยของเรา · คำตอบที่เก็บไว้จาก `/ask-wiki` (`type: article`) |
 | `papers/` | source note 1 ไฟล์ต่อ 1 paper (`type: paper`) |
 | `sources/` | source note 1 ไฟล์ต่อเอกสารบริษัทหรือคลิป 1 ชิ้น: 56-1 · 10-K · 10-Q · transcript (`type: source`) |
 | `companies/` | หน้าบริษัท 1 ไฟล์ต่อ 1 บริษัท ชื่อไฟล์คือ ticker รวมสิ่งที่รู้จากหลาย source (`type: company`) |
@@ -39,8 +39,8 @@ vault นี้คือ **หน่วยความจำของกระ�
 | `templates/` | template ของทุก type |
 | `scripts/` | lint · แปลงเอกสารเป็นข้อความ · validate facts · backtest |
 
-## บทความ (`articles/`) กับ source note (`papers/`)
-- **บทความ** เล่าเป็นเรื่องให้คนทั่วไปเข้าใจ paper ทั้งชิ้น หรืออธิบายงานวิจัยของเราตั้งแต่คำถามถึงวิธีทำ
+## บทความ (`articles/`) กับ source note (`papers/` · `sources/`)
+- **บทความ** เล่าเป็นเรื่องให้คนทั่วไปเข้าใจ paper หรือเอกสารบริษัททั้งชิ้น หรืออธิบายงานวิจัยของเราตั้งแต่คำถามถึงวิธีทำ
   ส่วน **source note** คือตาราง claim สั้นพร้อมเลขหน้า ใช้ตรวจและอ้างอิงใน hypothesis
 - ทุกข้อเท็จจริงจาก paper ในบทความต้องตรวจกับต้นฉบับและใส่เลขหน้า ถ้าอ่านได้แค่ abstract ให้ตั้ง `basis: abstract`
   และเขียนเฉพาะสิ่งที่ abstract รองรับ ห้ามเติมจากความจำของ LLM
@@ -53,7 +53,7 @@ vault นี้คือ **หน่วยความจำของกระ�
 สำเนาสำหรับ agent อื่น (เช่น Antigravity CLI) อยู่ที่ `.agents/skills/` สร้างด้วย `python scripts/sync_skills.py` ห้ามแก้ตรงๆ
 - `find-paper` ตรวจว่า paper มีจริงและ metadata ถูก หาฉบับที่อ่านได้ฟรี และตรวจว่าไฟล์คือต้นฉบับ ไม่ใช่สรุปจาก AI
 - `ingest-paper` อ่านต้นฉบับแล้วเขียน source note (claim table + เลขหน้า) และบทความอธิบาย
-- `ingest-source` อ่านเอกสารบริษัทหรือ transcript แล้วเขียน source note ใน `sources/` และอัปเดตหน้าบริษัทใน `companies/`
+- `ingest-source` อ่านเอกสารบริษัทหรือ transcript แล้วเขียน source note ใน `sources/` บทความอธิบาย และอัปเดตหน้าบริษัทใน `companies/`
 - `ask-wiki` ตอบคำถามจาก vault เท่านั้น ทุกประโยคมีลิงก์ source + ที่มา ถ้า vault ไม่มีคำตอบให้บอกว่าไม่มี
 - `log-experiment` รัน backtest เป็น trial ใหม่ → Reviewer (`.claude/agents/reviewer.md`) → ตัดสินตาม kill criteria
 - `wiki-lint` ตรวจ vault ด้วยสคริปต์
@@ -66,7 +66,7 @@ frontmatter เป็น key ระดับบนสุดเท่านั้
 `paper (queued → ingested → reviewed)` + `article` (อธิบาย paper) → `hypothesis (idea → preregistered → testing → promoted | rejected)`
 → `experiment (reviewer_verdict: pending → pass | fail)` → `factor`
 
-`source (queued → ingested → reviewed)` → `company` (รวมหลาย source) → ถามด้วย `/ask-wiki` → คำตอบที่ดีเก็บเป็น `articles/`
+`source (queued → ingested → reviewed)` + `article` (อธิบายเอกสาร) → `company` (รวมหลาย source) → ถามด้วย `/ask-wiki` → คำตอบที่ดีเก็บไว้ใน `articles/`
 
 ## ภาษา
 เขียนภาษาไทย คงศัพท์เทคนิคเป็นภาษาอังกฤษ ไฟล์ทั้งหมดใช้ชื่อ kebab-case ภาษาอังกฤษ

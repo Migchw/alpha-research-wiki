@@ -36,5 +36,5 @@ created: 2026-10-27
 
 ## Sources
 - [[nflx-10k-2025]] (เผยแพร่ 2026-01-23)
-- [[nflx-10q-2026q3]] (เผยแพร่ 2026-10-21)
+- [[nflx-10q-2026q3]] (เผยแพร่ 2026-10-21) · บทความ [[nflx-10q-2026q3-explained]]
 - [[nflx-earnings-interview-2026q3]] (ไลฟ์ 2026-10-20 · machine transcript)
