@@ -37,7 +37,7 @@ Argument: argument ที่ผู้ใช้พิมพ์ต่อจาก�
 ใช้ `templates/Paper.md` เติม frontmatter จาก Crossref (title, authors, year, journal, volume, issue, pages, doi, url)
 พร้อม `verified_against` และ `status: ingested` (ถ้า basis เป็น `abstract` ให้คง `status: queued`)
 - **สรุป 3 บรรทัด** ใส่ตัวเลขหลักพร้อมเลขหน้า
-- **Claim table** 8–15 ข้อ ทุกแถวมีหน้า/ตาราง แยกประเภท `fact` · `interpretation (ของผู้เขียน)` · `interpretation (ของเรา)` · `open question`
+- **Claim table** 8–15 ข้อ ข้อละหนึ่งเรื่อง ใช้ตรวจเท่านั้น (dashboard ไม่แสดงตาราง แสดงแค่จำนวนข้อที่ตรวจแล้ว) ทุกแถวมีหน้า/ตาราง แยกประเภท `fact` · `interpretation (ของผู้เขียน)` · `interpretation (ของเรา)` · `open question`
 - **วิธีการ** data, universe, ช่วงเวลา, วิธีสร้าง signal และพอร์ต, ค่าธรรมเนียม
 - **ใช้กับงานเราอย่างไร** ลิงก์ hypothesis และ concept ที่เกี่ยวข้อง และบอกว่าวิธีของ paper ต่างจาก backtest ของเราตรงไหน
 - **Open questions** สิ่งที่ต้องทดสอบกับหุ้นไทย
@@ -53,6 +53,11 @@ Argument: argument ที่ผู้ใช้พิมพ์ต่อจาก�
 - ชื่อคนที่ paper อ้างถึงให้ตรวจกับรายการอ้างอิงท้าย paper ก่อนเขียนชื่อต้น
 - งานอื่นที่ paper อ้างถึงให้เขียนว่าเราอ้างผ่าน paper นี้ ถ้าเรายังไม่ได้อ่านต้นฉบับของงานนั้น
 - ถ้าจะชี้ไปผลของเรา ใช้ ```` ```ledger H-xxx ```` ห้ามพิมพ์ตัวเลข backtest
+- **ภาพประกอบ** ถ้า paper มีกราฟที่ช่วยให้เข้าใจเร็วขึ้น (เช่น ผลตอบแทนสะสม) เลือก 1–3 ภาพ:
+  `python scripts/crop_figure.py <pdf> <หน้า PDF> assets/<citekey>/wp-p06-figure-1.png --above "Figure 1:"`
+  เปิดดูภาพก่อนเขียน แล้วฝัง `![[assets/<citekey>/<ไฟล์>.png]]` ตามด้วย caption ตัวเอียง: Figure กับหน้า + สิ่งที่เห็นในภาพ
+  · `assets/` ไม่ commit (ลิขสิทธิ์) และ dashboard ซ่อนภาพที่ไม่มีไฟล์ caption จึงต้องอ่านรู้เรื่องแม้ไม่มีภาพ
+  · ตารางไม่ต้องทำเป็นภาพ ถ้าอยากให้เห็นแนวโน้มให้วาดเองด้วย ```` ```mermaid ```` (`xychart-beta`) จากตัวเลขที่คัดแล้ว พร้อมหน้าที่มา
 - ปิดท้ายด้วย `## เครดิตและแหล่งที่มา` (citation เต็ม + DOI + basis + วันที่ตรวจ)
 
 ## 4. ลิงก์เข้ากับส่วนอื่นของ vault

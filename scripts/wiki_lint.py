@@ -92,6 +92,9 @@ def lint(vault: Path) -> list[str]:
             continue
 
         for target in WIKILINK.findall(text):
+            # assets/ is local only (gitignored), so a missing image is not an error on a fresh clone
+            if target.strip().startswith("assets/"):
+                continue
             if Path(target.strip()).stem not in stems:
                 errors.append(f"{rel}: wikilink เสีย [[{target}]]")
 

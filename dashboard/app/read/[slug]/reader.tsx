@@ -20,12 +20,14 @@ const darkVars = {
   primaryColor: '#2b2822', primaryTextColor: '#f1ece2', primaryBorderColor: '#8a7440',
   secondaryColor: '#24221d', tertiaryColor: '#1f1d19', lineColor: '#d9a441', textColor: '#e8e2d4',
   edgeLabelBackground: '#1a1917', clusterBkg: '#211f1b', clusterBorder: '#514a3a',
+  xyChart: { backgroundColor: '#24221d', titleColor: '#f1ece2', xAxisLabelColor: '#e8e2d4', yAxisLabelColor: '#e8e2d4', xAxisTitleColor: '#e8e2d4', yAxisTitleColor: '#e8e2d4', xAxisLineColor: '#8a7440', yAxisLineColor: '#8a7440', xAxisTickColor: '#8a7440', yAxisTickColor: '#8a7440', plotColorPalette: '#d9a441, #6fa8b8, #b07fc4, #8fbf6a' },
 };
 const lightVars = {
   fontFamily: 'Anuphan, sans-serif', fontSize: '18px', background: '#f6f2e9',
   primaryColor: '#fffaf0', primaryTextColor: '#2a2418', primaryBorderColor: '#b98a2e',
   secondaryColor: '#f3ecdc', tertiaryColor: '#fbf6ea', lineColor: '#9a6a0c', textColor: '#2a2418',
   edgeLabelBackground: '#f6f2e9', clusterBkg: '#f3ecdc', clusterBorder: '#d6c79f',
+  xyChart: { backgroundColor: '#fbf6ea', titleColor: '#2a2418', xAxisLabelColor: '#2a2418', yAxisLabelColor: '#2a2418', xAxisTitleColor: '#2a2418', yAxisTitleColor: '#2a2418', xAxisLineColor: '#9a6a0c', yAxisLineColor: '#9a6a0c', xAxisTickColor: '#9a6a0c', yAxisTickColor: '#9a6a0c', plotColorPalette: '#9a6a0c, #2f6f82, #7a4f99, #4f7a2f' },
 };
 
 function MermaidDiagram({ chart }: { chart: string }) {

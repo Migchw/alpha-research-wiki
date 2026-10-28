@@ -21,3 +21,6 @@ dashboard/data/index*.json
 .obsidian/workspace*.json
 .obsidian/cache
 .env
+
+# ภาพที่ดึงจากเอกสาร (กราฟ ตาราง สไลด์): เก็บในเครื่องเท่านั้น ไม่ commit
+assets/

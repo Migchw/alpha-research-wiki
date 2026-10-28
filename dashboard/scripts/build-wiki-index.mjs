@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { cp, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -136,10 +137,35 @@ for (const document of allDocuments) {
   documentLookup.set(document.path.replace(/\.md$/i, '').toLowerCase(), document);
 }
 
-function readerMarkdown(markdown) {
-  return withoutFrontmatter(markdown)
+// Articles that explain a note, by the note's file name (from the article's `about: [[...]]`).
+const explainedBy = new Map();
+for (const article of articles) {
+  for (const match of (article.meta.about || '').matchAll(/\[\[([^\]|#]+)/g)) {
+    const name = match[1].trim().toLowerCase();
+    explainedBy.set(name, [...(explainedBy.get(name) || []), article]);
+  }
+}
+
+// The claim table is the audit trail behind a source note: it stays in the file, readers get one line saying it exists.
+function withoutClaimTable(markdown) {
+  return markdown.replace(/^## Claim table[^\n]*\n[\s\S]*?(?=^## |(?![\s\S]))/m, (block) => {
+    const rows = block.split(/\r?\n/).filter((line) => /^\|\s*\d+\s*\|/.test(line)).length;
+    return `> ตรวจกับต้นฉบับแล้ว ${rows} ข้อ · ตาราง claim พร้อมเลขหน้าอยู่ในไฟล์ต้นทาง\n\n`;
+  });
+}
+
+function readerMarkdown(markdown, document) {
+  let body = withoutFrontmatter(markdown);
+  if (document.kind === 'paper' || document.kind === 'source') {
+    body = withoutClaimTable(body);
+    const explainers = explainedBy.get(document.name.toLowerCase()) || [];
+    if (explainers.length) body = `${explainers.map((article) => `> **อ่านฉบับเล่าเรื่อง:** [[${article.name}|${article.title}]]`).join('\n>\n')}\n\n${body}`;
+  }
+  return body
     .replace(/!\[\[([^\]|]+)(?:\|[^\]]+)?\]\]/g, (_, target) => {
       const normalized = target.replaceAll('\\', '/').replace(/^assets\//, '');
+      // Images are not in git (assets/ is ignored), so a fresh clone drops embeds it doesn't have.
+      if (!existsSync(path.join(vaultRoot, 'assets', normalized))) return '';
       return `![${path.basename(normalized)}](/vault-assets/${normalized.split('/').map(encodeURIComponent).join('/')})`;
     })
     .replace(/\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?\]\]/g, (_, target, label) => {
@@ -184,7 +210,7 @@ const documents = allDocuments.map((document) => ({
   path: document.path,
   // Flat frontmatter (strings) for the reader's context panels; schema docs don't need it.
   meta: document.kind === 'schema' ? {} : document.meta,
-  markdown: readerMarkdown(withoutTitleHeading(document)),
+  markdown: readerMarkdown(withoutTitleHeading(document), document),
 }));
 
 // Research Board and Experiment Ledger read these flat records (frontmatter is flat by schema).
@@ -272,7 +298,7 @@ for (const document of allDocuments) {
   let buffer = [];
   const flush = () => {
     const text = cleanText(buffer.join('\n').replace(/\|/g, ' ')).slice(0, 1500);
-    if (text) searchChunks.push({ slug: document.slug, kind: document.kind, title: document.title, heading, anchor, text });
+    if (text && heading !== 'Claim table') searchChunks.push({ slug: document.slug, kind: document.kind, title: document.title, heading, anchor, text });
     buffer = [];
   };
   for (const line of withoutFrontmatter(document.markdown).split(/\r?\n/)) {
