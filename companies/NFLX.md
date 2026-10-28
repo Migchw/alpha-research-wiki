@@ -35,6 +35,6 @@ created: 2026-10-27
 - รายได้โฆษณาเป็นเท่าไรของรายได้รวม (ยังไม่มีเอกสารใน vault บอก)
 
 ## Sources
-- [[nflx-10k-2025]] (เผยแพร่ 2026-01-23)
+- [[nflx-10k-2025]] (เผยแพร่ 2026-01-23) · บทความ [[nflx-10k-2025-explained]]
 - [[nflx-10q-2026q3]] (เผยแพร่ 2026-10-21) · บทความ [[nflx-10q-2026q3-explained]]
-- [[nflx-earnings-interview-2026q3]] (ไลฟ์ 2026-10-20 · machine transcript)
+- [[nflx-earnings-interview-2026q3]] (ไลฟ์ 2026-10-20 · machine transcript) · บทความ [[nflx-earnings-interview-2026q3-explained]]
