@@ -18,12 +18,21 @@ argument-hint: <source-id> เช่น delta-56-1-2025 | nflx-10k-2025 | nflx-e
   `=== pdf page N ===` · `=== section: Item 7 ... ===` · `[mm:ss]` และ sha256 ของต้นฉบับ
 - เอกสาร PDF: ดูว่าเลขหน้าที่พิมพ์ต่างจากลำดับหน้า PDF เท่าไร แล้วใช้ **เลขหน้า PDF** ตลอดทั้ง note (เขียนไว้ในหัว note)
 
+## 0.5 ตัวเลขงบรายไตรมาสผ่าน validator แบบ F45 ก่อน
+ถ้าเป็นงบหรือ MD&A รายไตรมาสที่ตัวเลขจะถูกใช้ต่อ (เทียบข้ามงวด คำนวณอัตราส่วน) ให้ทำก่อนเขียน note:
+1. `python scripts/extract_pdf.py --name <ticker>-<yyyy>-q<n> --url <url> --sha256 <hash>` → `data/filings/<name>/source.md` แยกหน้า
+2. เขียน schema `facts/schemas/<name>.json` (code · period · scope · unit + identity เช่น สินทรัพย์ = หนี้สิน + ส่วนผู้ถือหุ้น · margin = กำไร / ยอดขาย)
+3. สกัดตัวเลขตาม `scripts/extract_facts_prompt.md` (ชี้หน้า ห้ามคำนวณ) เป็น candidate ใน `facts/runs/`
+4. `python scripts/validate_facts.py --facts <candidate> --source data/filings/<name> --schema facts/schemas/<name>.json --write facts/<name>.json ...` ต้องผ่านทุกข้อ
+5. ตัวเลขใน note และบทความต้องตรงกับ fact pack · ตัวอย่าง: `facts/delta-2026-q3.json`
+
 ## 1. อ่านตามโครงของเอกสาร ไม่ต้องอ่านทุกหน้าเท่ากัน
 | ชนิด | ส่วนที่ต้องอ่าน |
 |---|---|
 | 56-1 One Report | 1.1–1.2 ธุรกิจและโครงสร้างรายได้ · 2 การบริหารความเสี่ยง · 4 MD&A · งบการเงินเฉพาะตัวเลขที่ MD&A อ้าง |
 | 10-K | Item 1 Business · Item 1A Risk Factors · Item 7 MD&A |
 | 10-Q | Part I Item 2 MD&A · ส่วนที่เปลี่ยนจาก 10-K ล่าสุด |
+| MD&A รายไตรมาส (หนังสือแจ้ง ตลท.) | อ่านทั้งฉบับ (มักยาว 3–10 หน้า) · ตารางสรุปผล + คำอธิบายต้นทุน + งบฐานะการเงิน |
 | transcript | คำถามของนักวิเคราะห์และคำตอบ ทีละคำถาม พร้อม `[mm:ss]` |
 จด claim ledger ระหว่างอ่าน: ข้อความ · ที่มา · ประเภท ห้ามเขียน note ก่อนอ่านส่วนที่ต้องอ่านจบ
 

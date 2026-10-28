@@ -1,0 +1,443 @@
+{
+ "filing": "SET:DELTA:2569:Q3 MD&A",
+ "units": [
+  "THB_m",
+  "percent",
+  "times",
+  "THB"
+ ],
+ "expected": {
+  "sales_revenue": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "gross_profit": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "operating_profit": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "net_profit": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "gross_margin": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "percent"
+  ],
+  "operating_margin": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "percent"
+  ],
+  "net_margin": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "percent"
+  ],
+  "eps": [
+   [
+    "3Q2026",
+    "3Q2025",
+    "2Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB"
+  ],
+  "sga_incl_rd": [
+   [
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "fx_gain": [
+   [
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "royalty_income": [
+   [
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "top_up_tax_expense": [
+   [
+    "3Q2026"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "cash": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "trade_receivables": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "inventories": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "other_current_assets": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "ppe": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "right_of_use": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "goodwill": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "other_assets": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "total_assets": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "short_term_loans": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "trade_payables": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "income_tax_payable": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "provision_top_up_tax": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "other_current_liabilities": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "employee_benefits": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "other_noncurrent_liabilities": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "total_liabilities": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ],
+  "total_equity": [
+   [
+    "2026-09-30",
+    "2025-12-31"
+   ],
+   [
+    "consolidated"
+   ],
+   "THB_m"
+  ]
+ },
+ "sums": [
+  [
+   "assets = liabilities + equity (2026-09-30)",
+   "total_assets|2026-09-30|consolidated",
+   [
+    "total_liabilities|2026-09-30|consolidated",
+    "total_equity|2026-09-30|consolidated"
+   ]
+  ],
+  [
+   "total assets = items (2026-09-30)",
+   "total_assets|2026-09-30|consolidated",
+   [
+    "cash|2026-09-30|consolidated",
+    "trade_receivables|2026-09-30|consolidated",
+    "inventories|2026-09-30|consolidated",
+    "other_current_assets|2026-09-30|consolidated",
+    "ppe|2026-09-30|consolidated",
+    "right_of_use|2026-09-30|consolidated",
+    "goodwill|2026-09-30|consolidated",
+    "other_assets|2026-09-30|consolidated"
+   ]
+  ],
+  [
+   "total liabilities = items (2026-09-30)",
+   "total_liabilities|2026-09-30|consolidated",
+   [
+    "short_term_loans|2026-09-30|consolidated",
+    "trade_payables|2026-09-30|consolidated",
+    "income_tax_payable|2026-09-30|consolidated",
+    "provision_top_up_tax|2026-09-30|consolidated",
+    "other_current_liabilities|2026-09-30|consolidated",
+    "employee_benefits|2026-09-30|consolidated",
+    "other_noncurrent_liabilities|2026-09-30|consolidated"
+   ]
+  ],
+  [
+   "assets = liabilities + equity (2025-12-31)",
+   "total_assets|2025-12-31|consolidated",
+   [
+    "total_liabilities|2025-12-31|consolidated",
+    "total_equity|2025-12-31|consolidated"
+   ]
+  ],
+  [
+   "total assets = items (2025-12-31)",
+   "total_assets|2025-12-31|consolidated",
+   [
+    "cash|2025-12-31|consolidated",
+    "trade_receivables|2025-12-31|consolidated",
+    "inventories|2025-12-31|consolidated",
+    "other_current_assets|2025-12-31|consolidated",
+    "ppe|2025-12-31|consolidated",
+    "right_of_use|2025-12-31|consolidated",
+    "goodwill|2025-12-31|consolidated",
+    "other_assets|2025-12-31|consolidated"
+   ]
+  ],
+  [
+   "total liabilities = items (2025-12-31)",
+   "total_liabilities|2025-12-31|consolidated",
+   [
+    "short_term_loans|2025-12-31|consolidated",
+    "trade_payables|2025-12-31|consolidated",
+    "income_tax_payable|2025-12-31|consolidated",
+    "provision_top_up_tax|2025-12-31|consolidated",
+    "other_current_liabilities|2025-12-31|consolidated",
+    "employee_benefits|2025-12-31|consolidated",
+    "other_noncurrent_liabilities|2025-12-31|consolidated"
+   ]
+  ]
+ ],
+ "ratios": [
+  [
+   "gross_margin 3Q2026",
+   "gross_margin|3Q2026|consolidated",
+   "gross_profit|3Q2026|consolidated",
+   "sales_revenue|3Q2026|consolidated"
+  ],
+  [
+   "operating_margin 3Q2026",
+   "operating_margin|3Q2026|consolidated",
+   "operating_profit|3Q2026|consolidated",
+   "sales_revenue|3Q2026|consolidated"
+  ],
+  [
+   "net_margin 3Q2026",
+   "net_margin|3Q2026|consolidated",
+   "net_profit|3Q2026|consolidated",
+   "sales_revenue|3Q2026|consolidated"
+  ],
+  [
+   "gross_margin 3Q2025",
+   "gross_margin|3Q2025|consolidated",
+   "gross_profit|3Q2025|consolidated",
+   "sales_revenue|3Q2025|consolidated"
+  ],
+  [
+   "operating_margin 3Q2025",
+   "operating_margin|3Q2025|consolidated",
+   "operating_profit|3Q2025|consolidated",
+   "sales_revenue|3Q2025|consolidated"
+  ],
+  [
+   "net_margin 3Q2025",
+   "net_margin|3Q2025|consolidated",
+   "net_profit|3Q2025|consolidated",
+   "sales_revenue|3Q2025|consolidated"
+  ],
+  [
+   "gross_margin 2Q2026",
+   "gross_margin|2Q2026|consolidated",
+   "gross_profit|2Q2026|consolidated",
+   "sales_revenue|2Q2026|consolidated"
+  ],
+  [
+   "operating_margin 2Q2026",
+   "operating_margin|2Q2026|consolidated",
+   "operating_profit|2Q2026|consolidated",
+   "sales_revenue|2Q2026|consolidated"
+  ],
+  [
+   "net_margin 2Q2026",
+   "net_margin|2Q2026|consolidated",
+   "net_profit|2Q2026|consolidated",
+   "sales_revenue|2Q2026|consolidated"
+  ]
+ ]
+}

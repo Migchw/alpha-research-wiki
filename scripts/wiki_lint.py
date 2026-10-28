@@ -45,7 +45,7 @@ ENUMS = {
     ("paper", "verified_against"): {"fulltext", "working_paper", "abstract", ""},
     ("article", "basis"): {"fulltext", "working_paper", "abstract", "vault"},
     ("source", "status"): {"queued", "ingested", "reviewed"},
-    ("source", "doc_type"): {"56-1", "10-K", "10-Q", "transcript", "video", "other"},
+    ("source", "doc_type"): {"56-1", "10-K", "10-Q", "MD&A", "transcript", "video", "other"},
     ("hypothesis", "status"): {"idea", "preregistered", "testing", "promoted", "rejected"},
     ("hypothesis", "expected_sign"): {"positive", "negative", ""},
     ("experiment", "sample"): {"in_sample", "out_of_sample"},

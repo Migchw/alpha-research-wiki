@@ -37,6 +37,8 @@ def test_number_matching() -> None:
     assert on_page(1063, PAGES[2])          # token split by the converter still matches
     assert not on_page(1077, PAGES[1])      # a prefix of a real number is not a match
     assert not on_page(10.5, PAGES[2])
+    assert on_page(0.6, "EPS THB 0.60 last year")   # trailing zero as printed (DELTA 3Q2026)
+    assert not on_page(0.6, PAGES[1])               # 0.6 is not 0.66
 
 
 def test_invented_value_fails_evidence() -> None:

@@ -13,6 +13,7 @@ Usage:
   python scripts/validate_facts.py --facts <candidate> --source <dir> --write facts/ap-2026-q2.json
       --model "<model id>" --filing-key SET:AP:2569:Q2 --reported-at 2026-08-13
   python scripts/validate_facts.py --facts facts/ap-2026-q2.json --render
+  งบบริษัทอื่น: เพิ่ม --schema facts/schemas/<filing>.json (code/period/scope/unit + identity ของงบนั้น)
 """
 from __future__ import annotations
 
@@ -81,22 +82,37 @@ def on_page(value: float, page_text: str) -> bool:
     spaced = re.sub(r"(?<=\d),(?=\d)", "", re.sub(r"\s+", " ", page_text))
     packed = re.sub(r"(?<=\d),(?=\d)", "", re.sub(r"\s+", "", page_text))
     for form in number_forms(value):
-        pat = re.compile(r"(?<![\d.])" + re.escape(form) + r"(?![\d])")
+        tail = r"0*(?![\d])" if "." in form else r"(?![\d])"  # 0.6 also matches a printed 0.60
+        pat = re.compile(r"(?<![\d.])" + re.escape(form) + tail)
         if pat.search(spaced) or pat.search(packed):
             return True
     return False
 
 
-def validate(metrics: list[dict], pages: dict[int, str] | None) -> tuple[list[str], list[str], list[str]]:
+def load_schema(path: Path) -> dict:
+    """facts/schemas/<filing>.json -> the same shapes as EXPECTED / SUMS / RATIOS (default schema = AP 2Q2026)."""
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    return {
+        "units": set(raw.get("units", UNITS)),
+        "expected": {c: (set(v[0]), set(v[1]), v[2]) for c, v in raw["expected"].items()},
+        "sums": [tuple(s) for s in raw.get("sums", [])],
+        "ratios": [tuple(r) for r in raw.get("ratios", [])],
+    }
+
+
+def validate(metrics: list[dict], pages: dict[int, str] | None,
+             schema: dict | None = None) -> tuple[list[str], list[str], list[str]]:
+    schema = schema or {"units": UNITS, "expected": EXPECTED, "sums": SUMS, "ratios": RATIOS}
+    units, expected = schema["units"], schema["expected"]
     errors, warnings, passed = [], [], []
     seen: dict[str, dict] = {}
     for m in metrics:
         k = key(m)
-        exp = EXPECTED.get(m.get("code"))
+        exp = expected.get(m.get("code"))
         if exp is None or m.get("period") not in exp[0] or m.get("scope") not in exp[1]:
             errors.append(f"schema    {k}: ไม่อยู่ในรายการที่ขอ")
             continue
-        if m.get("unit") != exp[2] or m.get("unit") not in UNITS:
+        if m.get("unit") != exp[2] or m.get("unit") not in units:
             errors.append(f"schema    {k}: unit '{m.get('unit')}' ควรเป็น '{exp[2]}'")
         status, value = m.get("status"), m.get("value")
         if status not in STATUS:
@@ -123,7 +139,7 @@ def validate(metrics: list[dict], pages: dict[int, str] | None) -> tuple[list[st
         v = seen.get(k, {}).get("value")
         return v if isinstance(v, (int, float)) and not isinstance(v, bool) else None
 
-    for name, total, parts in SUMS:
+    for name, total, parts in schema["sums"]:
         vals = [val(total)] + [val(p) for p in parts]
         if None in vals:
             warnings.append(f"arith     {name}: ข้ามเพราะขาดตัวเลข")
@@ -131,7 +147,7 @@ def validate(metrics: list[dict], pages: dict[int, str] | None) -> tuple[list[st
         diff, tol = vals[0] - sum(vals[1:]), 0.5 * len(vals)
         line = f"arith     {name}: {vals[0]:g} vs {sum(vals[1:]):g} (ต่าง {diff:+g}, ยอมได้ ±{tol:g} จากการปัดเศษ)"
         (passed if abs(diff) <= tol else errors).append(line)
-    for name, result, num, den in RATIOS:
+    for name, result, num, den in schema["ratios"]:
         r, a, b = val(result), val(num), val(den)
         if None in (r, a, b) or b == 0:
             warnings.append(f"arith     {name}: ข้ามเพราะขาดตัวเลข")
@@ -161,6 +177,7 @@ def main() -> int:
     ap.add_argument("--model", default="", help="model ที่สกัด candidate นี้ (บันทึกลง fact pack)")
     ap.add_argument("--filing-key", default="", help="เช่น SET:AP:2569:Q2")
     ap.add_argument("--reported-at", default="", help="วันที่ประกาศงบ (YYYY-MM-DD) ใช้กำหนดวันที่ signal เริ่มใช้ได้")
+    ap.add_argument("--schema", type=Path, help="facts/schemas/<filing>.json ถ้าไม่ใส่ใช้ schema ของ AP 2Q2026")
     ap.add_argument("--render", action="store_true", help="พิมพ์ตารางอ่านง่ายจาก fact pack (ไม่เรียก LLM)")
     args = ap.parse_args()
 
@@ -173,7 +190,8 @@ def main() -> int:
         pages = load_pages((args.source / "source.md").read_text(encoding="utf-8"))
     else:
         print("WARN  ไม่ได้ส่ง --source จึงไม่ได้ตรวจ evidence (ข้อ 3)")
-    errors, warnings, passed = validate(pack["metrics"], pages)
+    schema = load_schema(args.schema) if args.schema else None
+    errors, warnings, passed = validate(pack["metrics"], pages, schema)
     for line in passed:
         print("PASS  " + line)
     for line in warnings:
@@ -194,6 +212,7 @@ def main() -> int:
             "reported_at": args.reported_at,
             "source": {k: manifest[k] for k in ("url", "sha256", "engine", "engine_version", "page_count")},
             "extraction": {"model": args.model, "prompt": "scripts/extract_facts_prompt.md",
+                           "schema": args.schema.as_posix() if args.schema else "built-in (AP 2Q2026)",
                            "candidate": args.facts.as_posix(),
                            "validated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")},
             "metrics": pack["metrics"],
